@@ -3,10 +3,12 @@
 
 #include "vector"
 #include <iostream>
+#include "GridCell.h"
 
 class Block {
     std::vector<GridCell*> blockCells;
     public:
+    virtual ~Block() = 0;
     virtual void moveLeft() = 0;  
     virtual void moveRight() = 0;
     virtual void moveDown() = 0;
