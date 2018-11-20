@@ -6,9 +6,9 @@
    top-right, top-left, bottom-right and bottom-left*/
 
 Grid::Grid(int p_width, int p_height): width{p_width}, height{p_height}{
-	for(int w = 0; w < p_width; w++){
+	for(int h = 0; h < p_height; h++){
 		std::vector<GridCell> grid_row; // creates a row
-		for(int h = 0; h < p_height; h++){
+		for(int w = 0; w < p_width; w++){
 			grid_row.emplace_back(GridCell(w, h)); // places the new GridCells in the row
 		}
 		this->cells.emplace_back(grid_row);
@@ -17,27 +17,27 @@ Grid::Grid(int p_width, int p_height): width{p_width}, height{p_height}{
 	// Loop through again to set neighbours
 	// Must be done on the second run because previous grid cells may have
 	// been reallocated to new spaces in memory
-	for(int w = 0; w < p_width; w++){
+	for(int h = 0; h < p_height; h++){
 		std::vector<GridCell> grid_row; // creates a row
-		for(int h = 0; h < p_height; h++){
+		for(int w = 0; w < p_width; w++){
 			if(w > 0){ // set left cell
-				this->cells.at(w).at(h).setNeighbour("left", &(this->cells.at(w - 1).at(h)));
-				this->cells.at(w - 1).at(h).setNeighbour("right", &(this->cells.at(w).at(h)));
+				this->cells.at(h).at(w).setNeighbour("left", &(this->cells.at(h).at(w - 1)));
+				this->cells.at(h).at(w - 1).setNeighbour("right", &(this->cells.at(h).at(w)));
 			}
 
 			if(h > 0 && w > 0){// set top-left cell
-				this->cells.at(w).at(h).setNeighbour("top-left", &(this->cells.at(w - 1).at(h - 1)));
-				this->cells.at(w - 1).at(h - 1).setNeighbour("bottom-right", &(this->cells.at(w).at(h)));
+				this->cells.at(h).at(w).setNeighbour("top-left", &(this->cells.at(h - 1).at(w - 1)));
+				this->cells.at(h - 1).at(w - 1).setNeighbour("bottom-right", &(this->cells.at(h).at(w)));
 			}
 
 			if(h > 0){// set top cell
-				this->cells.at(w).at(h).setNeighbour("top", &(this->cells.at(w).at(h - 1)));
-				this->cells.at(w).at(h - 1).setNeighbour("bottom", &(this->cells.at(w).at(h)));
+				this->cells.at(h).at(w).setNeighbour("top", &(this->cells.at(h - 1).at(w)));
+				this->cells.at(h - 1).at(w).setNeighbour("bottom", &(this->cells.at(h).at(w)));
 			}
 
 			if(h > 0 && w < p_width - 1){// set top-right cell
-				this->cells.at(w).at(h).setNeighbour("top-right", &(this->cells.at(w + 1).at(h - 1)));
-				this->cells.at(w + 1).at(h - 1).setNeighbour("bottom-left", &(this->cells.at(w).at(h)));
+				this->cells.at(h).at(w).setNeighbour("top-right", &(this->cells.at(h - 1).at(w + 1)));
+				this->cells.at(h - 1).at(w + 1).setNeighbour("bottom-left", &(this->cells.at(h).at(w)));
 			}
 		}
 	}
