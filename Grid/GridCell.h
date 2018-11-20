@@ -9,9 +9,24 @@
 
 class GridCell{
     std::map<std::string, GridCell*> neighbours;
-    bool isUsed;
     int x,y;
     char cellChar;
+public:
+	bool isUsed;
+
+	// constructors and destructor
+	GridCell(int p_x, int p_y);
+	~GridCell();
+	// methods
+	int getX();
+	int getY();
+	void setX(int p_x);
+	void setY(int p_y);
+	char getType();
+	void setNeighbour(std::string position, GridCell* cell);
+
+	// io
+	friend std::ostream& operator<<(std::ostream& out, GridCell& cell);
 };
 
 #endif
