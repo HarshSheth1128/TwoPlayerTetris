@@ -6,9 +6,16 @@
 #include "GridCell.h"
 
 class Grid{
-    std::vector<vector<GridCell*>> cells;
+    std::vector<std::vector<GridCell>> cells;
+    // xWindow* window;
+
+    const int width, height; // for now be constant since there should
+    						 // be no resizing of grids
     public:
-    vector<GridCell*> getRow(i);
+    Grid(int width=11, int height=18);
+    std::vector<GridCell> getRow(int i);
+    int getWidth();
+    int getHeight();
 };
 
 #endif
