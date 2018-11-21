@@ -6,6 +6,7 @@
 #include "GridCell.h"
 
 class Block {
+    protected:
     std::vector<GridCell*> blockCells;
     public:
     virtual ~Block() = 0;
