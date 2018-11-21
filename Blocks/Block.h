@@ -3,15 +3,19 @@
 
 #include "vector"
 #include <iostream>
-#include "GridCell.h"
+#include "../Grid/GridCell.h"
+#include "../Grid/Grid.h"
 
 class Block {
     std::vector<GridCell*> blockCells;
+    Grid* grid;
+    char type;
     public:
+    Block(Grid* g, std::vector<GridCell*> cells, char type);
     virtual ~Block() = 0;
-    virtual void moveLeft() = 0;  
-    virtual void moveRight() = 0;
-    virtual void moveDown() = 0;
+    void moveLeft();  
+    void moveRight();
+    void moveDown();
     virtual void rotateCW() = 0;
     virtual void rotateCCW() = 0;
     virtual void drop() = 0;
