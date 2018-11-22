@@ -60,7 +60,7 @@ GridCell* GridCell::getNeighbour(std::string position){
 // io operators
 
 std::ostream& operator<<(std::ostream& out, GridCell& cell){
-	if(isUsed){
+	if(cell.isUsed){
 		out << cell.cellChar;
 	} else {
 		out << " ";
