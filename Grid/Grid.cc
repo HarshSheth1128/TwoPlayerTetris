@@ -68,6 +68,10 @@ void Grid::setGridCell(int x, int y, GridCell& cell){
 	}
 }
 
+GridCell* Grid::getGridCell(int x, int y){
+	return &(cells.at(y).at(x));
+}
+
 // io
 
 std::ostream& operator<<(std::ostream& out, Grid& grid){

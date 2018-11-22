@@ -10,7 +10,7 @@ class Grid{
     std::vector<std::vector<GridCell>> cells;
     friend class Block;
     // xWindow* window;
-
+    
     const int width, height; // for now be constant since there should
     						 // be no resizing of grids
     public:
@@ -20,7 +20,7 @@ class Grid{
     int getWidth();
     int getHeight();
     void setGridCell(int x, int y, GridCell& cell);
-
+    GridCell* getGridCell(int x, int y);
 
     // io
     friend std::ostream& operator<<(std::ostream& out, Grid& grid);
