@@ -13,9 +13,13 @@ class Grid{
     						 // be no resizing of grids
     public:
     Grid(int width=11, int height=18);
-    std::vector<GridCell> getRow(int i);
+    std::vector<GridCell>& getRow(int i);
     int getWidth();
     int getHeight();
+    void setGridCell(int x, int y, GridCell& cell);
+
+    // io
+    friend std::ostream& operator<<(std::ostream& out, Grid& grid);
 };
 
 #endif

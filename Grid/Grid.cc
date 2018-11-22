@@ -45,7 +45,7 @@ Grid::Grid(int p_width, int p_height): width{p_width}, height{p_height}{
 
 // Methods
 
-std::vector<GridCell> Grid::getRow(int i){
+std::vector<GridCell>& Grid::getRow(int i){
 	return this->cells.at(i);
 }
 
@@ -55,4 +55,28 @@ int Grid::getWidth(){
 
 int Grid::getHeight(){
 	return this->height;
+}
+
+void Grid::setGridCell(int x, int y, GridCell& cell){
+	try{
+		if((x < 0 || x > this->width) || (y < 0 || y > this->height)){
+			throw;
+		}
+		this->cells.at(x).at(y) = cell;
+	}catch(...){
+		// error handling for if x and/or y is an invalid value
+	}
+}
+
+// io
+
+std::ostream& operator<<(std::ostream& out, Grid& grid){
+	for(int i = 0; i < grid.getHeight() - 1; i++){
+		for(int j = 0; j < grid.getWidth() - 1; j++){
+			std::vector<GridCell> temp = grid.getRow(i);
+			std::cout << temp.at(j);
+		}
+		std::cout << std::endl;
+	}
+	return out;
 }
