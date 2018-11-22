@@ -4,7 +4,7 @@
 GridCell::GridCell(int p_x, int p_y){
 	this->x = p_x;
 	this->y = p_y;
-	this->cellChar = '-';
+	this->cellChar = 'x'; //This is for testing, Block constructor will override this
 	this->isUsed = false;
 }
 
@@ -60,6 +60,10 @@ GridCell* GridCell::getNeighbour(std::string position){
 // io operators
 
 std::ostream& operator<<(std::ostream& out, GridCell& cell){
-	out << cell.cellChar;
+	if(isUsed){
+		out << cell.cellChar;
+	} else {
+		out << " ";
+	}
 	return out;
 }
