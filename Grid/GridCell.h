@@ -23,7 +23,9 @@ public:
 	void setX(int p_x);
 	void setY(int p_y);
 	char getType();
+	void setType(char c);
 	void setNeighbour(std::string position, GridCell* cell);
+	GridCell* getNeighbour(std::string position);
 
 	// io
 	friend std::ostream& operator<<(std::ostream& out, GridCell& cell);
