@@ -77,3 +77,15 @@ void Block::moveDown(){
         blockCells.at(i)->isUsed = true;
     }
 }
+
+void rotateCW(){
+
+}
+
+void rotateCCW(){
+
+}
+
+void drop(){
+
+}
