@@ -13,13 +13,13 @@ class Block {
     char type;
     public:
     Block(Grid* g, std::vector<GridCell*> cells, char type);
-    virtual ~Block() = 0;
+    ~Block();
     void moveLeft();  
     void moveRight();
     void moveDown();
-    virtual void rotateCW() = 0;
-    virtual void rotateCCW() = 0;
-    virtual void drop() = 0;
+    void rotateCW();
+    void rotateCCW();
+    void drop();
 };
 
 #endif
