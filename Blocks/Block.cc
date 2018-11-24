@@ -25,12 +25,12 @@ struct CompareY {
 };
 
 // Function that is responsible for moving the cell left
-void Block::moveLeft(){
+bool Block::moveLeft(){
     //We check to see that the block is not obstructed by a wall or a cell
     for(auto i: blockCells){
         if(i->getX() == 0 || i->getNeighbour("left")->isUsed){
             if(std::find(blockCells.begin(), blockCells.end(), i->getNeighbour("left")) == blockCells.end()){
-                return;
+                return false;
             }
         }
     }
@@ -45,15 +45,16 @@ void Block::moveLeft(){
         blockCells.at(i)->setType(c);
         blockCells.at(i)->isUsed = true;
     }
+    return true;
 }
 
 // Function that is responsible for moving the cell right
-void Block::moveRight(){
+bool Block::moveRight(){
     //We check to see that the block is not obstructed by a wall or a cell
     for(auto i: blockCells){
         if(i->getX() == 10 || i->getNeighbour("right")->isUsed){
             if(std::find(blockCells.begin(), blockCells.end(), i->getNeighbour("right")) == blockCells.end()){
-                return;
+                return false;
             }
         }
     }
@@ -68,15 +69,16 @@ void Block::moveRight(){
         blockCells.at(i)->setType(c);
         blockCells.at(i)->isUsed = true;
     }
+    return true;
 }
 
 // Function that is responsible for moving the cell right
-void Block::moveDown(){
+bool Block::moveDown(){
     //We check to see that the block is not obstructed by a wall or a cell
     for(auto i: blockCells){
         if(i->getY() == 17 || i->getNeighbour("bottom")->isUsed){
             if(std::find(blockCells.begin(), blockCells.end(), i->getNeighbour("bottom")) == blockCells.end()){
-                return;
+                return false;
             }
         }
     }
@@ -91,6 +93,7 @@ void Block::moveDown(){
         blockCells.at(i)->setType(c);
         blockCells.at(i)->isUsed = true;
     }
+    return true;
 }
 
 void rotateCW(){
