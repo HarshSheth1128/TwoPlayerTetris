@@ -23,8 +23,7 @@ class Block {
     void moveLeft();  
     void moveRight();
     void moveDown();
-    void rotateCW();
-    void rotateCCW();
+    void rotate(std::string direction);
     void drop();
 };
 

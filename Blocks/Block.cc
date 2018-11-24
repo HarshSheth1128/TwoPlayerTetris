@@ -99,7 +99,7 @@ void Block::shiftCoordinates (std::vector<int> &vec, int shift){
     }    
 }
 
-void Block::rotateCW(){
+void Block::rotate(std::string direction){
     //storing xCoordinates and yCoordinates of each blockCell
     //in xCoords and yCoords respectively
     for(auto i: blockCells){
@@ -124,10 +124,22 @@ void Block::rotateCW(){
     //Transpose of the block:
     xCoords.swap(yCoords);
 
-    //Reflecting coordinates vertically to the right
-    int xMax = *(std::max_element(std::begin(xCoords), std::end(xCoords))); 
-    for(auto &i: xCoords){
-        i += 2 * (xMax - i);
+    //For clockwise rotation
+    if (direction == "CW"){
+        //Reflecting coordinates vertically to the right
+        int xMax = *(std::max_element(std::begin(xCoords), std::end(xCoords))); 
+        for(auto &i: xCoords){
+            i += 2 * (xMax - i);
+        }
+    }
+
+    //For counter-clockwise rotation
+    else if (direction == "CCW"){
+        //Reflecting coordinates horizontally downwards
+        int yMax = *(std::max_element(std::begin(yCoords), std::end(yCoords))); 
+        for(auto &i: yCoords){
+            i += 2 * (yMax - i);
+        }
     }
 
     //Re-adjusting xCoordinates back to the top left origin
@@ -179,10 +191,6 @@ void Block::rotateCW(){
             blockCells.at(i)->isUsed = true; 
         }   
     }
-}
-
-void Block::rotateCCW(){
-
 }
 
 void Block::drop(){
