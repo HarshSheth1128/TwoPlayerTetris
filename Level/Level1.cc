@@ -20,6 +20,5 @@ Block* Level1::getNextBlock(){
     else if (random >= 8 && random <= 9){blockChar = 'O';}
     else if (random >= 10 && random <= 11){blockChar = 'I';}
     std::vector<GridCell*> retVec;
-    std::cout << "Random: " << random << " " <<  blockChar << std::endl;
     return new Block(nullptr, retVec, blockChar);  
 }

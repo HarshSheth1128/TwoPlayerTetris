@@ -10,9 +10,9 @@ class Level{
     public:
     Level(int level);
     ~Level();
-    virtual Block* getNextBlock() = 0;
-    int getScore(int linesCleared);
-    int getLevel();
+    virtual Block* getNextBlock() = 0; //Returns an empty block with level char
+    int getScore(int linesCleared); //Returns score based on lines cleared
+    int getLevel(); //Returns the current level
 };
 
 #endif
