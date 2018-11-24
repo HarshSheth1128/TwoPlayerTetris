@@ -3,7 +3,9 @@
 #include <vector>
 #include "../Grid/GridCell.h"
 
-Level2::Level2():Level(2){}
+Level2::Level2():Level(2){
+    srand(time(NULL));
+}
 
 Level2::~Level2(){}
 
