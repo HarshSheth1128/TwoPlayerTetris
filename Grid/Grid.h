@@ -4,11 +4,9 @@
 #include <iostream>
 #include "vector"
 #include "GridCell.h"
-#include "Block.h"
 
 class Grid{
     std::vector<std::vector<GridCell>> cells;
-    friend class Block;
     // xWindow* window;
     
     const int width, height; // for now be constant since there should
