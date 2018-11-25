@@ -12,7 +12,7 @@ class Level0 : public Level{
     public:
     Level0(std::string file);
     ~Level0();
-    Block* getNextBlock() override; //Returns an empty block with level char
+    char getNextBlock() override; //Returns a char
 };
 
 #endif

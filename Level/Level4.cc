@@ -1,7 +1,5 @@
 #include "Level4.h"
 #include <stdlib.h>
-#include <vector>
-#include "../Grid/GridCell.h"
 #include <time.h>
 
 Level4::Level4(Grid* g):Level(4), g(g){
@@ -10,7 +8,7 @@ Level4::Level4(Grid* g):Level(4), g(g){
 
 Level4::~Level4(){}
 
-Block* Level4::getNextBlock(){
+char Level4::getNextBlock(){
     char blockChar;
     int random = rand() % 9;
     //We generate a number from 0-9, 
@@ -23,7 +21,6 @@ Block* Level4::getNextBlock(){
     else if (random == 6){blockChar = 'L';}
     else if (random == 7){blockChar = 'O';}
     else if (random == 8){blockChar = 'I';}
-    std::vector<GridCell*> retVec;
     //If num blocks since clear is a multiple of five look for an empty
     //space in the center of the screen and make it a *
     if(numBlocksSinceClear % 5 == 0 && numBlocksSinceClear != 0){
@@ -37,7 +34,7 @@ Block* Level4::getNextBlock(){
         }
     }
     numBlocksSinceClear++;
-    return new Block(nullptr, retVec, blockChar);  
+    return blockChar;  
 }
 
 int Level4::getScore(int linesCleared){

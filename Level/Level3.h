@@ -10,7 +10,7 @@ class Level3 : public Level{
     public:
     Level3(); //This Level also ads a heavy decorator
     ~Level3();
-    Block* getNextBlock() override; //Returns an empty block with level char
+    char getNextBlock() override; //Returns a char
 };
 
 #endif

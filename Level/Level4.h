@@ -13,7 +13,7 @@ class Level4 : public Level{
     Level4(Grid* g); //This Level also adds a random cell in the middle of the board
                      //and also makes generated blocks heavy.
     ~Level4();
-    Block* getNextBlock() override; //Returns an empty block with level char
+    char getNextBlock() override; //Returns a char
     int getScore(int linesCleared) override; //Sets numBlocksSinceClear to 0 and calculates score
 };
 
