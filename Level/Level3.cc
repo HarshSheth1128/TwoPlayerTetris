@@ -1,10 +1,6 @@
 #include "Level3.h"
 #include <stdlib.h>
 #include <time.h>
-#include "Level0.h"
-#include "Level1.h"
-#include "Level2.h"
-#include "Level4.h"
 
 Level3::Level3():Level(3){
     srand(time(NULL));
