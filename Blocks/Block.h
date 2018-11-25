@@ -18,8 +18,8 @@ class Block {
     void shiftCoordinates (std::vector<int> &, int shift);
 
     public:
-    Block(Grid* g, std::vector<GridCell*> cells, char type);
-    ~Block();
+    //virtual Block(Grid* g, char type) = 0;
+    virtual ~Block() = 0;
     bool moveLeft();  
     bool moveRight();
     bool moveDown();

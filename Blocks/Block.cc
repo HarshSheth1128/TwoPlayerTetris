@@ -1,12 +1,12 @@
 #include "Block.h"
 #include <algorithm>
 
-Block::Block(Grid* g, std::vector<GridCell*> cells, char c):grid(g),blockCells(cells),type(c){
+//Block::Block(Grid* g, std::vector<GridCell*> cells, char c):grid(g),blockCells(cells),type(c){
     //Set the character type for all cells that this block occupies
-    for(auto i: blockCells){
-        i->setType(type);
-    }
-}
+  //  for(auto i: blockCells){
+        //i->setType(type);
+    //}
+//}
 
 Block::~Block(){}
 
