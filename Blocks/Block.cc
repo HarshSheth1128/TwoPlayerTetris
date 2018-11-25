@@ -168,7 +168,7 @@ void Block::rotate(std::string direction){
     xMinMax = std::minmax_element(xCoords.begin(), xCoords.end());
     yMinMax = std::minmax_element(yCoords.begin(), yCoords.end());
     if (((*xMinMax.first) < 0) or ((*yMinMax.first) < 0) or ((*xMinMax.second) >= grid->getWidth()) or ((*yMinMax.second) >= grid->getHeight())){
-        return;
+        return false;
     }
 
     //Checking if new coordinates are used by any other blocks
@@ -192,8 +192,10 @@ void Block::rotate(std::string direction){
             blockCells.at(i) = this->grid->getGridCell(xCoords.at(i), yCoords.at(i));
             blockCells.at(i)->setType(this->type);
             blockCells.at(i)->isUsed = true; 
-        }   
+        }
+        return true;   
     }
+    return false;
 }
 
 void Block::drop(){
