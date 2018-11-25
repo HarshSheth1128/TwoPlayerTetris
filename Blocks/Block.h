@@ -23,7 +23,7 @@ class Block {
     bool moveLeft();  
     bool moveRight();
     bool moveDown();
-    void rotate(std::string direction);
+    bool rotate(std::string direction);
     void drop();
 };
 

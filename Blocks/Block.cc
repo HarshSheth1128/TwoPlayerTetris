@@ -102,7 +102,7 @@ void Block::shiftCoordinates (std::vector<int> &vec, int shift){
     }    
 }
 
-void Block::rotate(std::string direction){
+bool Block::rotate(std::string direction){
     //storing xCoordinates and yCoordinates of each blockCell
     //in xCoords and yCoords respectively
     for(auto i: blockCells){
