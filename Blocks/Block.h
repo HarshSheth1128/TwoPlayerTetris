@@ -20,9 +20,9 @@ class Block {
     public:
     Block(Grid* g, std::vector<GridCell*> cells, char type);
     ~Block();
-    void moveLeft();  
-    void moveRight();
-    void moveDown();
+    bool moveLeft();  
+    bool moveRight();
+    bool moveDown();
     void rotate(std::string direction);
     void drop();
 };
