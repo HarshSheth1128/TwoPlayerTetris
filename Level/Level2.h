@@ -10,7 +10,7 @@ class Level2 : public Level{
     public:
     Level2();
     ~Level2();
-    Block* getNextBlock() override; //Returns an empty block with level char
+    char getNextBlock() override; //Returns a char
 };
 
 #endif

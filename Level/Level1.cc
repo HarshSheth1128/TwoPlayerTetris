@@ -1,7 +1,5 @@
 #include "Level1.h"
 #include <stdlib.h>
-#include <vector>
-#include "../Grid/GridCell.h"
 
 Level1::Level1():Level(1){
     srand(time(NULL));
@@ -9,7 +7,7 @@ Level1::Level1():Level(1){
 
 Level1::~Level1(){}
 
-Block* Level1::getNextBlock(){
+char Level1::getNextBlock(){
     char blockChar;
     int random = rand() % 12;
     //We generate a number from 0-11, then we assign a character to each
@@ -21,6 +19,5 @@ Block* Level1::getNextBlock(){
     else if (random >= 6 && random <= 7){blockChar = 'L';}
     else if (random >= 8 && random <= 9){blockChar = 'O';}
     else if (random >= 10 && random <= 11){blockChar = 'I';}
-    std::vector<GridCell*> retVec;
-    return new Block(nullptr, retVec, blockChar);  
+    return blockChar;  
 }

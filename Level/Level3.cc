@@ -1,7 +1,5 @@
 #include "Level3.h"
 #include <stdlib.h>
-#include <vector>
-#include "../Grid/GridCell.h"
 #include <time.h>
 
 Level3::Level3():Level(3){
@@ -10,7 +8,7 @@ Level3::Level3():Level(3){
 
 Level3::~Level3(){}
 
-Block* Level3::getNextBlock(){
+char Level3::getNextBlock(){
     char blockChar;
     int random = rand() % 9;
     //We generate a number from 0-9, 
@@ -23,6 +21,5 @@ Block* Level3::getNextBlock(){
     else if (random == 6){blockChar = 'L';}
     else if (random == 7){blockChar = 'O';}
     else if (random == 8){blockChar = 'I';}
-    std::vector<GridCell*> retVec;
-    return new Block(nullptr, retVec, blockChar);  
+    return blockChar;  
 }
