@@ -13,6 +13,8 @@ class GamePlayer: public Player{
     Block *nextBlock;
     Block *currBlock;
     std::vector<Block*> blocksOnBoard;
+    void shiftCellsDown(int y);
+    void removeEmptyBlocks();
     public:
     // xWindow *window;
 
