@@ -2,11 +2,23 @@
 #define __GAMEPLAYER_H__
 
 #include "Player.h"
+#include "../Grid/Grid.h"
+#include "../Blocks/Block.h"
+#include "../Level/Level.h"
 
-class GamePlayer{
+class GamePlayer: public Player{
+    int score;
+    Grid *grid;
+    Level *level;
+    Block *nextBlock;
+    Block *currBlock;
+    std::vector<Block*> blocksOnBoard;
     public:
+    // xWindow *window;
+
     //GamePlayer::GamePlayer(xWindow &w);
-    GamePlayer::~GamePlayer();
+    GamePlayer(Grid *grid);
+    ~GamePlayer();
     std::vector<GridCell> getRow(int rowNum) override;
     int getLevel() override;
     int getScore() override;
@@ -17,5 +29,5 @@ class GamePlayer{
     void moveDown() override;
     void rotate(std::string direction) override;
     void drop() override;
-}
+};
 #endif

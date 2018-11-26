@@ -3,6 +3,7 @@
 
 #include "../Grid/Grid.h"
 #include "../Blocks/Block.h"
+#include "../Level/Level.h"
 
 class Player{
     int score;
@@ -13,7 +14,7 @@ class Player{
     // xWindow *window;
 
     public:
-    ~Player();
+    virtual ~Player() = 0;
     virtual std::vector<GridCell> getRow(int rowNum) = 0;
     virtual int getLevel() = 0;
     virtual int getScore() = 0;
@@ -25,6 +26,6 @@ class Player{
     virtual void rotate(std::string direction) = 0;
     virtual void drop() = 0;
 
-}
+};
 
 #endif
