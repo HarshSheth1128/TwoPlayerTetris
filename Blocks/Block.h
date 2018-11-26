@@ -1,23 +1,32 @@
 #ifndef __BLOCK_H__
 #define __BLOCK_H__
 
-#include "vector"
+#include <vector>   
 #include <iostream>
 #include "../Grid/GridCell.h"
 #include "../Grid/Grid.h"
 
 class Block {
-    std::vector<GridCell*> blockCells;
-    Grid* grid;
     char type;
+    std::vector<int> xCoords;
+    std::vector<int> yCoords;
+    std::pair<int, int> origBottomLeft;
+    std::pair<int, int> topLeft;
+    std::pair<int, int> newBottomLeft; 
+    void shiftCoordinates (std::vector<int> &, int shift);
+
+    protected:
+    std::vector<GridCell*> blockCells;
+    Grid *grid;
+
     public:
-    Block(Grid* g, std::vector<GridCell*> cells, char type);
-    ~Block();
+    Block(Grid* g, char type);
+    virtual ~Block() = 0;
+    void setUpBlock();
     bool moveLeft();  
     bool moveRight();
     bool moveDown();
-    void rotateCW();
-    void rotateCCW();
+    bool rotate(std::string direction);
     void drop();
 };
 
