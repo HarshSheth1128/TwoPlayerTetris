@@ -14,7 +14,7 @@ class Grid{
     public:
 
     Grid(int width=11, int height=18);
-    std::vector<GridCell>& getRow(int i);
+    std::vector<GridCell>* getRow(int i);
     int getWidth();
     int getHeight();
     void setGridCell(int x, int y, GridCell& cell);

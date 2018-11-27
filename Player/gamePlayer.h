@@ -7,7 +7,7 @@
 #include "../Level/Level.h"
 
 class GamePlayer: public Player{
-    int score;
+    int score = 0;
     Grid *grid;
     Level *level;
     Block *nextBlock;
@@ -19,17 +19,19 @@ class GamePlayer: public Player{
     // xWindow *window;
 
     //GamePlayer::GamePlayer(xWindow &w);
-    GamePlayer(Grid *grid);
+    GamePlayer(Grid *grid, Level *level);
     ~GamePlayer();
-    std::vector<GridCell> getRow(int rowNum) override;
+    std::vector<GridCell>* getRow(int rowNum) override;
     int getLevel() override;
     int getScore() override;
-    Block* getNextBlock() override;
-    void setNextBlock(Block *) override;
+    char getNextBlock() override;
+    void setNextBlock(char b) override;
     void moveLeft() override;
     void moveRight() override;
     void moveDown() override;
     void rotate(std::string direction) override;
     void drop() override;
+    void print() override; 
+    //void addBlockOnBoard(Block *b) override;
 };
 #endif

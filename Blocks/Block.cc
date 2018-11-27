@@ -213,7 +213,7 @@ void Block::removeCellFromBlock(int x, int y){
 //Set each cell in the block to be its downwards neighbour
 void Block::moveCellsDown(){
     for(int i = 0; i < blockCells.size(); i++){
-        blockCells.at(i) = blockCells.at(i)->getNeighbour("down");
+        blockCells.at(i) = blockCells.at(i)->getNeighbour("bottom");
     }
 }
 
