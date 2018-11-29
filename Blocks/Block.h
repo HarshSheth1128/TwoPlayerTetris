@@ -28,7 +28,7 @@ class Block {
     bool moveDown();
     bool rotate(std::string direction);
     void removeCellFromBlock(int x, int y);
-    void moveCellsDown();
+    void moveCellsDown(int rowCleared);
     int numCells();
 };
 

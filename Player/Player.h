@@ -19,12 +19,12 @@ class Player{
     virtual int getLevel() = 0;
     virtual int getScore() = 0;
     virtual char getNextBlock() = 0;
-    virtual void setNextBlock(char b) = 0;
+    virtual void setNextBlock() = 0;
     virtual void moveLeft() = 0;
     virtual void moveRight() = 0;
     virtual void moveDown() = 0;
     virtual void rotate(std::string direction) = 0;
-    virtual void drop() = 0;
+    virtual int drop() = 0;
     virtual void print() = 0;
     //virtual void addBlockOnBoard(Block *b) = 0;
 };

@@ -18,12 +18,13 @@
 
 
 //GamePlayer::GamePlayer(xWindow &w){}
-GamePlayer::GamePlayer(Grid* grid, Level *level):grid(grid), level(level){}
+GamePlayer::GamePlayer(Grid* grid, Level *level):grid(grid), level(level){
+  nextBlock = getNextBlock();
+}
 
 GamePlayer::~GamePlayer(){
   delete grid;
   delete level;
-  delete nextBlock;
   delete currBlock;
 }
 
@@ -43,8 +44,8 @@ char GamePlayer::getNextBlock() {
   return level->getNextBlock();
 }
 
-void GamePlayer::setNextBlock(char b) {
-  switch (b)
+void GamePlayer::setNextBlock() {
+  switch (nextBlock)
   {
     case 'S':
       currBlock = new SBlock(grid);
@@ -68,6 +69,7 @@ void GamePlayer::setNextBlock(char b) {
       currBlock = new IBlock(grid);
       break;
   }
+  nextBlock = getNextBlock();
 }
 
 void GamePlayer::moveLeft() {
@@ -118,9 +120,11 @@ void GamePlayer::shiftCellsDown(int rowCleared){
       grid->getGridCell(x,y+1)->setType(grid->getGridCell(x,y)->getType());        
     }
   }
+
   //Set the block cells to one cell below the current
+  // if they're above the cleared row
   for(auto i : blocksOnBoard){
-    i->moveCellsDown();
+    i->moveCellsDown(rowCleared);
   }
   
 }
@@ -135,10 +139,10 @@ void GamePlayer::removeEmptyBlocks(){
   }
 }
 
-void GamePlayer::drop() {
+int GamePlayer::drop() {
   while(currBlock->moveDown());
   blocksOnBoard.emplace_back(currBlock);
-  int numRowsCleared;
+  int numRowsCleared = 0;
   //Go through each row
   for(int y = 17; y >=3; y--){
     //Check to see if the row is full
@@ -176,12 +180,48 @@ void GamePlayer::drop() {
     }
   }
   //Add to the score
-  score += level->getScore(numRowsCleared);
+  if(numRowsCleared!= 0) score += level->getScore(numRowsCleared);
+  
+  //Return the num rows cleared
+  return numRowsCleared;
+}
+
+void GamePlayer::printBlock(){
+    switch (nextBlock)
+  {
+    case 'S':
+      std::cout << " SS" << std::endl;
+      std::cout << "SS " << std::endl;
+      break;
+    case 'Z':
+      std::cout << "ZZ " << std::endl;
+      std::cout << " ZZ" << std::endl;
+      break;
+    case 'T':
+      std::cout << "TTT" << std::endl;
+      std::cout << " T " << std::endl;
+      break;
+    case 'L':
+      std::cout << "  L" << std::endl;
+      std::cout << "LLL" << std::endl;
+      break;
+    case 'J':
+      std::cout << "J  " << std::endl;
+      std::cout << "JJJ" << std::endl;
+      break;
+    case 'O':
+      std::cout << "OO" << std::endl;
+      std::cout << "OO" << std::endl;
+      break;
+    case 'I':
+      std::cout << "IIII" << std::endl;
+      break;
+  }
 }
 
 void GamePlayer::print(){
   std::cout << "Level:    " << getLevel() << std::endl;
-  std::cout << "Score:    " << getScore() << std::endl;
+  std::cout << "Score:    " << score << std::endl;
   std::cout << "-----------" << std::endl;
   for(int y = 0; y < 18; y++){
     for(int x = 0; x <11; x++){
@@ -191,6 +231,35 @@ void GamePlayer::print(){
   }
   std::cout << "-----------" << std::endl;
   std::cout << "Next:" << std::endl;
-
+  printBlock();
 }
 
+int main(){
+  Grid *g = new Grid();
+  Level *l = new Level0("sequence1.txt");
+  Player *p = new GamePlayer(g,l);
+  p->setNextBlock();
+  p->getNextBlock();
+  p->print();
+  while(!std::cin.fail() || !std::cin.eof()){
+    std::string s;
+    std::cin >> s;
+    if(s == "l"){
+      p->moveLeft();
+    } else if (s == "r"){
+      p->moveRight();
+    } else if (s == "do"){
+      p->moveDown();
+    } else if (s == "dr"){
+      p->drop();
+      p->setNextBlock();
+    } else if (s == "rtc"){
+      p->rotate("CW");
+    } else if (s == "rtcw"){
+      p->rotate("CCW");
+    } else {
+      break;
+    }
+    p->print();
+  }
+}
