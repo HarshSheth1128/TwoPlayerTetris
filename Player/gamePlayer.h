@@ -19,10 +19,10 @@ class GamePlayer: public Player{
     // xWindow *window;
 
     //GamePlayer::GamePlayer(xWindow &w);
-    GamePlayer(Grid *grid, Level *level);
+    GamePlayer(Grid *grid, Level *level, bool id);
     ~GamePlayer();
     bool getPlayerId() override;
-    //vlayer* getBasePlayer() override;
+    //Player* getBasePlayer() override;
     std::vector<GridCell>* getRow(int rowNum) override;
     int getLevel() override;
     int getScore() override;
