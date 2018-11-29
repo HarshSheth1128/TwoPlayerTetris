@@ -201,7 +201,29 @@ bool Block::rotate(std::string direction){
   return false;
 }
 
-void Block::drop(){
-
+//Remove reference to cell in the blockCells vector
+void Block::removeCellFromBlock(int x, int y){
+    for(int i = 0; i < blockCells.size(); i++){
+        if(blockCells.at(i)->getX() == x && blockCells.at(i)->getY() == y){
+            blockCells.erase(blockCells.begin() + i);
+        }
+    }
 }
+
+//Set each cell in the block to be its downwards neighbour
+void Block::moveCellsDown(int rowCleared){
+    for(int i = 0; i < blockCells.size(); i++){
+        if(blockCells.at(i)->getY() < rowCleared){
+            blockCells.at(i) = blockCells.at(i)->getNeighbour("bottom");
+        }
+    }
+}
+
+//Get number of cells in the block
+int Block::numCells(){
+    return blockCells.size();
+}
+
+
+
 
