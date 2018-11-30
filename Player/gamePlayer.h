@@ -7,23 +7,18 @@
 #include "../Level/Level.h"
 
 class GamePlayer: public Player{
-    int score = 0;
-    Grid *grid;
-    Level *level;
-    Block *nextBlock;
-    Block *currBlock;
     std::vector<Block*> blocksOnBoard;
     void shiftCellsDown(int y);
     void removeEmptyBlocks();
-    public:
-    // xWindow *window;
 
+    public:
     //GamePlayer::GamePlayer(xWindow &w);
     GamePlayer(Grid *grid, Level *level, bool id);
     ~GamePlayer();
     bool getPlayerId() override;
     //Player* getBasePlayer() override;
     std::vector<GridCell>* getRow(int rowNum) override;
+    void printRow (int rowNum) override;
     int getLevel() override;
     int getScore() override;
     char getNextBlock() override;
@@ -33,7 +28,7 @@ class GamePlayer: public Player{
     bool moveDown() override;
     void rotate(std::string direction) override;
     void drop() override;
-    void print() override; 
+    //void print() override; 
     //void addBlockOnBoard(Block *b) override;
 };
 #endif

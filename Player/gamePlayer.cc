@@ -18,7 +18,8 @@
 
 
 //GamePlayer::GamePlayer(xWindow &w){}
-GamePlayer::GamePlayer(Grid* grid, Level *level, bool id):grid(grid), level(level), playerId(id){}
+GamePlayer::GamePlayer(Grid* grid, Level *level, bool id):Player(grid, level, id){}
+//GamePlayer::GamePlayer(Grid* grid, Level *level, bool id):grid{grid}, level{level}, playerId{id}{}
 
 GamePlayer::~GamePlayer(){
   delete grid;
@@ -31,8 +32,19 @@ bool GamePlayer::getPlayerId(){
     return this->playerId;
 }
 
+
 std::vector<GridCell>* GamePlayer::getRow(int rowNum){
   return grid->getRow(rowNum);
+}
+
+
+void GamePlayer::printRow (int rowNum) {
+    std::vector<GridCell> gridRow = *(this->grid->getRow(rowNum));
+    for (auto cells : gridRow){
+        std::cout << cells;
+    }
+    std::cout << std::endl;
+    std::cout << "-----------" << std::endl;
 }
 
 int GamePlayer::getLevel() {
@@ -82,8 +94,8 @@ void GamePlayer::moveRight() {
   currBlock->moveRight();
 }
 
-void GamePlayer::moveDown() {
-  currBlock->moveDown();
+bool GamePlayer::moveDown() {
+  return currBlock->moveDown();
 }
 
 void GamePlayer::rotate(std::string direction){
@@ -183,6 +195,7 @@ void GamePlayer::drop() {
   score += level->getScore(numRowsCleared);
 }
 
+/*
 void GamePlayer::print(){
   std::cout << "Level:    " << getLevel() << std::endl;
   std::cout << "Score:    " << getScore() << std::endl;
@@ -195,5 +208,7 @@ void GamePlayer::print(){
   }
   std::cout << "-----------" << std::endl;
   std::cout << "Next:" << std::endl;
-
 }
+*/
+
+
