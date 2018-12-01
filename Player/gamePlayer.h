@@ -10,8 +10,6 @@ class GamePlayer: public Player{
     std::vector<Block*> blocksOnBoard;
     void shiftCellsDown(int y);
     void removeEmptyBlocks();
-    void printBlock();
-
     public:
     // xWindow *window;
 
@@ -25,12 +23,18 @@ class GamePlayer: public Player{
     int getLevel() override;
     int getScore() override;
     char getNextBlock() override;
+    void setNextBlockChar(char c) override;
     void setNextBlock() override;
-    void moveLeft() override;
-    void moveRight() override;
-    bool moveDown() override;
-    void rotate(std::string direction) override;
-    int drop() override;
+    void moveLeft(int times) override;
+    void moveRight(int times) override;
+    bool moveDown(int times) override;
+    void rotate(std::string direction, int times) override;
+    void levelUp() override;
+    void levelDown() override;
+    int drop(int times) override;
+    void noRandom(std::string sequencefile) override;
+    void random() override;
+    void printBlock() override;
     //void print() override; 
     //void addBlockOnBoard(Block *b) override;
 };

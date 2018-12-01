@@ -43,8 +43,6 @@ void GamePlayer::printRow (int rowNum) {
     for (auto cells : gridRow){
         std::cout << cells;
     }
-    std::cout << std::endl;
-    std::cout << "-----------" << std::endl;
 }
 
 int GamePlayer::getLevel() {
@@ -87,23 +85,94 @@ void GamePlayer::setNextBlock() {
   nextBlock = getNextBlock();
 }
 
-void GamePlayer::moveLeft() {
+void GamePlayer::moveLeft(int times) {
   currBlock->moveLeft();
 }
 
-void GamePlayer::moveRight() {
+void GamePlayer::moveRight(int times) {
   currBlock->moveRight();
 }
 
-bool GamePlayer::moveDown() {
+bool GamePlayer::moveDown(int time) {
   return currBlock->moveDown();
 }
 
-void GamePlayer::rotate(std::string direction){
+void GamePlayer::rotate(std::string direction, int times){
   currBlock->rotate(direction);
 }
 
-//Harsh
+void GamePlayer::setNextBlockChar(char c){
+  nextBlock = c;
+}
+
+void GamePlayer::levelUp(){
+  int levelNum = level->getLevel();
+  if(levelNum != 4){
+    delete level;
+    switch(levelNum){
+      case 0:
+        level = new Level1();
+        break;
+      case 1:
+        level = new Level2();
+        break;
+      case 2:
+        level = new Level3();
+        break;
+      case 3:
+        level = new Level4(grid);
+        break;
+    }
+  }
+}
+
+void GamePlayer::levelDown(){
+  int levelNum = level->getLevel();
+  if(levelNum != 0){
+    delete level;
+    switch(levelNum){
+      case 1:
+        //If differennt sequencefile is defined and player 1
+        #ifdef scriptfile1
+        if(playerId == 1) level = new Level0("scriptfile1");
+        break;
+        #endif
+        //Otherwise just use sequence1.txt
+        if(playerId == 1) level = new Level0("sequence1.txt");
+
+        //If different sequencefile is defined and player 2
+        #ifdef scriptfile2
+        if(playerId == 0) level = new Level0("scriptfile2");
+        break;
+        #endif
+        //Otherwise just use sequence2.txt
+        if(playerId == 0) level = new Level0("sequence2.txt");
+        break;
+      case 2:
+        level = new Level1();
+        break;
+      case 3:
+        level = new Level2();
+        break;
+      case 4:
+        level = new Level3();
+        break;
+    }
+  }
+}
+
+void GamePlayer::noRandom(std::string sequencefile){
+  if(level->getLevel() == 3 || level->getLevel() == 4){
+    level->noRandom(sequencefile);
+  }
+}
+
+void GamePlayer::random(){
+  if(level->getLevel() == 3 || level->getLevel() == 4){
+    level->random();
+  }
+}
+
 
 //When a block is dropped, we go through all the rows of the grid.
 //If the row is full then we loop through the row
@@ -154,7 +223,7 @@ void GamePlayer::removeEmptyBlocks(){
   }
 }
 
-int GamePlayer::drop() {
+int GamePlayer::drop(int times) {
   while(currBlock->moveDown());
   blocksOnBoard.emplace_back(currBlock);
   int numRowsCleared = 0;
@@ -205,31 +274,31 @@ void GamePlayer::printBlock(){
     switch (nextBlock)
   {
     case 'S':
-      std::cout << " SS" << std::endl;
-      std::cout << "SS " << std::endl;
+      std::cout << " SS        " << std::endl;
+      std::cout << "SS         " << std::endl;
       break;
     case 'Z':
-      std::cout << "ZZ " << std::endl;
-      std::cout << " ZZ" << std::endl;
+      std::cout << "ZZ         " << std::endl;
+      std::cout << " ZZ        " << std::endl;
       break;
     case 'T':
-      std::cout << "TTT" << std::endl;
-      std::cout << " T " << std::endl;
+      std::cout << "TTT        " << std::endl;
+      std::cout << " T         " << std::endl;
       break;
     case 'L':
-      std::cout << "  L" << std::endl;
-      std::cout << "LLL" << std::endl;
+      std::cout << "  L        " << std::endl;
+      std::cout << "LLL        " << std::endl;
       break;
     case 'J':
-      std::cout << "J  " << std::endl;
-      std::cout << "JJJ" << std::endl;
+      std::cout << "J          " << std::endl;
+      std::cout << "JJJ        " << std::endl;
       break;
     case 'O':
-      std::cout << "OO" << std::endl;
-      std::cout << "OO" << std::endl;
+      std::cout << "OO         " << std::endl;
+      std::cout << "OO         " << std::endl;
       break;
     case 'I':
-      std::cout << "IIII" << std::endl;
+      std::cout << "IIII       " << std::endl;
       break;
   }
 }
