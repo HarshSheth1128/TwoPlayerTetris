@@ -24,6 +24,7 @@ class GamePlayer: public Player{
     void printRow (int rowNum) override;
     int getLevel() override;
     int getScore() override;
+    void setNextBlockChar(char c) override;
     char getNextBlock() override;
     void setNextBlock() override;
     void moveLeft() override;

@@ -15,6 +15,7 @@ class BlindDecorator: public EffectsDecorator{
     std::vector<GridCell>* getRow(int rowNum) override;
     void printRow (int rowNum) override;
     bool getPlayerId() override;
+    void setNextBlockChar(char c) override;
     int getLevel() override;
     int getScore() override;
     char getNextBlock() override;

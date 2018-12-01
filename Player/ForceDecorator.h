@@ -8,9 +8,10 @@
 
 class ForceDecorator: public EffectsDecorator{
     Player *player;
+    char blockType;
     
     public:
-    ForceDecorator(Player *component);
+    ForceDecorator(Player *component, char type);
     ~ForceDecorator() override;
     std::vector<GridCell>* getRow(int rowNum) override;
     void printRow (int rowNum) override;
@@ -19,6 +20,7 @@ class ForceDecorator: public EffectsDecorator{
     int getScore() override;
     char getNextBlock() override;
     void setNextBlock() override;
+    void setNextBlockChar(char c) override;
     void moveLeft()override;
     void moveRight()override;
     bool moveDown()override;

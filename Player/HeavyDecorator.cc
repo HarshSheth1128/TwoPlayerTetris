@@ -40,7 +40,7 @@ void HeavyDecorator::setNextBlock(){
 
 void HeavyDecorator::moveLeft(){
     player->moveLeft();
-    if (playerId == playerOnePlaying){
+    if (player->getPlayerId() == player->isPlayerOnePlaying()){
         for (int i = 0; i < 2; i++){
             if (!player->moveDown()){
                 player->drop();
@@ -53,15 +53,23 @@ void HeavyDecorator::moveLeft(){
 
 void HeavyDecorator::moveRight(){
     player->moveRight();
-    if (playerId == playerOnePlaying){
+    //std::cout << "at 1." << std::endl;
+    if (player->getPlayerId() == player->isPlayerOnePlaying()){
+      //  std::cout << "at 2." << std::endl;
         for (int i = 0; i < 2; i++){
+        //    std::cout << "at 3." << std::endl;
             if (!player->moveDown()){
+          //      std::cout << "dropping" << std::endl;
                 player->drop();
                 //playerOnePlaying = (!playerOnePlaying); //this should happen in GamePlayer::drop
                 return;
             }
         }
     }
+}
+
+void HeavyDecorator::setNextBlockChar(char c){
+    player->setNextBlockChar(c);
 }
 
 bool HeavyDecorator::moveDown(){

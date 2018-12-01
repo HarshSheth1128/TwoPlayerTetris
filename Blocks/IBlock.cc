@@ -19,6 +19,7 @@ IBlock::IBlock(Grid *g): Block(g, 'I'){
 
 IBlock::~IBlock(){}
 
+/*
 
 int main(){
     Grid* g = new Grid();
@@ -91,5 +92,5 @@ int main(){
     //s2->moveRight();
    // s2->moveRight();
     //s2->moveRight();
-}
+//}
 

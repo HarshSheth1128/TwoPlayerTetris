@@ -33,6 +33,9 @@ bool GamePlayer::getPlayerId(){
     return this->playerId;
 }
 
+void GamePlayer::setNextBlockChar(char c){
+    nextBlock = c;
+}
 
 std::vector<GridCell>* GamePlayer::getRow(int rowNum){
   return grid->getRow(rowNum);
@@ -43,8 +46,6 @@ void GamePlayer::printRow (int rowNum) {
     for (auto cells : gridRow){
         std::cout << cells;
     }
-    std::cout << std::endl;
-    std::cout << "-----------" << std::endl;
 }
 
 int GamePlayer::getLevel() {
@@ -197,6 +198,9 @@ int GamePlayer::drop() {
   //Add to the score
   if(numRowsCleared!= 0) score += level->getScore(numRowsCleared);
   
+  //change the player
+  playerOnePlaying = !playerOnePlaying;
+
   //Return the num rows cleared
   return numRowsCleared;
 }
@@ -249,8 +253,31 @@ void GamePlayer::print(){
   std::cout << "Next:" << std::endl;
   printBlock();
 }
-
+*/
+/*
 int main(){
+    Grid *g = new Grid();
+    Level *l = new Level1();
+    Player *p = new GamePlayer(g, l, 0);
+    p->setNextBlock();
+    for (int i = 0; i < 18; i++){
+        p->printRow(i);
+        std::cout << std::endl;
+    }
+    std::cout << " ===================== " << std::endl;
+    p = new HeavyDecorator(p);
+    p->moveRight();
+    p->moveRight();
+    p->moveRight();
+    p->moveRight();
+    for (int i = 0; i < 18; i++){
+        p->printRow(i);
+        std::cout << std::endl;
+    }
+    std::cout << " ===================== " << std::endl;
+
+*/
+    /*
   Grid *g = new Grid();
   Level *l = new Level0("sequence1.txt");
   Player *p = new GamePlayer(g,l);
@@ -278,5 +305,6 @@ int main(){
     }
     p->print();
   }
+
 }
 */
