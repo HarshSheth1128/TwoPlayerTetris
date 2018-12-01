@@ -1,8 +1,14 @@
-out: Level.o Level0.o Level1.o Level2.o Level3.o Level4.o Grid.o GridCell.o Block.o JBlock.o LBlock.o SBlock.o ZBlock.o OBlock.o TBlock.o IBlock.o Player.o gamePlayer.o
-	g++ -g -std=c++14 Level.o Level0.o Level1.o Level2.o Level3.o Level4.o Grid.o GridCell.o Block.o JBlock.o LBlock.o SBlock.o ZBlock.o OBlock.o TBlock.o IBlock.o Player.o gamePlayer.o -o out
+MAINFLAGS = $(mainflags)
+LEVELFLAGS = $(levelflags)
+
+out: main.o Level.o Level0.o Level1.o Level2.o Level3.o Level4.o Grid.o GridCell.o Block.o JBlock.o LBlock.o SBlock.o ZBlock.o OBlock.o TBlock.o IBlock.o Player.o gamePlayer.o
+	g++ -g -Dstartlevel=1 -std=c++14 main.o Level.o Level0.o Level1.o Level2.o Level3.o Level4.o Grid.o GridCell.o Block.o JBlock.o LBlock.o SBlock.o ZBlock.o OBlock.o TBlock.o IBlock.o Player.o gamePlayer.o -o out
+
+main.o: main.cc
+	g++ -g ${MAINFLAGS} -std=c++14 -c main.cc
 
 Grid.o: Grid/Grid.cc Grid/Grid.h
-	g++ -g -std=c++14 -c Grid/Grid.cc
+	g++ -g ${MAINFLAGS} -std=c++14 -c Grid/Grid.cc
 
 GridCell.o: Grid/GridCell.cc Grid/GridCell.h
 	g++ -g -std=c++14 -c Grid/GridCell.cc
