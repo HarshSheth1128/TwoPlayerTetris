@@ -21,21 +21,125 @@
 #include <sstream>
 #include <stdlib.h>
 
+void printPlayerBlocks(Player* p1, Player* p2){
+	char p1NextBlock = p1->getNextBlockChar();
+	char p2NextBlock = p2->getNextBlockChar();
+	switch (p1NextBlock) {
+	case 'S':
+		std::cout << "  SS        ";
+		break;
+	case 'Z':
+		std::cout << " ZZ         ";
+		break;
+	case 'T':
+		std::cout << " TTT        ";
+		break;
+	case 'L':
+		std::cout << "   L        ";
+		break;
+	case 'J':
+		std::cout << " J          ";
+		break;
+	case 'O':
+		std::cout << " OO         ";
+		break;
+	case 'I':
+		std::cout << " IIII       ";
+		break;
+	}
+	std::cout << "\t\t ";
+	//Print second block first row
+	switch (p2NextBlock) {
+	case 'S':
+		std::cout << "  SS        " << std::endl;
+		break;
+	case 'Z':
+		std::cout << " ZZ         " << std::endl;
+		break;
+	case 'T':
+		std::cout << " TTT        " << std::endl;
+		break;
+	case 'L':
+		std::cout << "   L        " << std::endl;
+		break;
+	case 'J':
+		std::cout << " J          " << std::endl;
+		break;
+	case 'O':
+		std::cout << " OO         " << std::endl;
+		break;
+	case 'I':
+		std::cout << " IIII       " << std::endl;
+		break;
+	}
+
+	switch (p1NextBlock) {
+	case 'S':
+		std::cout << " SS         ";
+		break;
+	case 'Z':
+		std::cout << "  ZZ        ";
+		break;
+	case 'T':
+		std::cout << "  T         ";
+		break;
+	case 'L':
+		std::cout << " LLL        ";
+		break;
+	case 'J':
+		std::cout << " JJJ        ";
+		break;
+	case 'O':
+		std::cout << " OO         ";
+		break;
+	}
+	std::cout << "\t\t ";
+	switch (p2NextBlock) {
+		case 'S':
+			std::cout << " SS         " << std::endl;
+			break;
+		case 'Z':
+			std::cout << "  ZZ        " << std::endl;
+			break;
+		case 'T':
+			std::cout << "  T         " << std::endl;
+			break;
+		case 'L':
+			std::cout << " LLL        " << std::endl;
+			break;
+		case 'J':
+			std::cout << " JJJ        " << std::endl;
+			break;
+		case 'O':
+			std::cout << " OO         " << std::endl;
+			break;
+	}
+
+}
+
 void printPlayers(Player* activePlayer, Player *p1, Player *p2){
     system("clear");
-    std::cout << "Level:    " << p1->getLevel() << "\t\t" << "Level:    " << p2->getLevel() << std::endl;
-    std::cout << "Score:    " << p1->getScore() << "\t\t" << "Score:    " << p2->getScore() << std::endl;
-    std::cout << "-----------\t\t-----------" << std::endl;
+    std::cout << " Level:    " << p1->getLevel() << "\t\t" << " Level:    " << p2->getLevel() << std::endl;
+    std::cout << " Score:    " << p1->getScore() << "\t\t" << " Score:    " << p2->getScore() << std::endl;
+    std::cout << "+-----------+\t\t+-----------+" << std::endl;
     for(int i = 0; i < 18; i++){
+		if(i != 2) std::cout << "|";
+		else std::cout << "+";
         p1->printRow(i);
+		if(i != 2) std::cout << "|";
+		else std::cout << "+";
         std::cout << "\t\t";
+		if(i != 2) std::cout << "|";
+		else std::cout << "+";
         p2->printRow(i);
-        std::cout << std::endl;
+        if(i != 2) std::cout << "|" << std::endl;
+		else std::cout << "+" << std::endl;
     }
-    std::cout << "-----------\t\t-----------" << std::endl;
-    std::cout << "Next:      \t\tNext:      " << std::endl;
-
-    if(activePlayer->getPlayerId() == 1){
+    std::cout << "+-----------+\t\t+-----------+" << std::endl;
+    std::cout << " Next:      \t\t Next:      " << std::endl;
+	printPlayerBlocks(p1,p2);
+	std::cout << std::endl;
+	if(activePlayer->getPlayerId() == 1){
         std::cout << "Player One's Turn" << std::endl;
     } else {
         std::cout << "Player Two's Turn" << std::endl;
@@ -139,6 +243,8 @@ void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &
             //Add decorator to active player
         };
 
+		printPlayers(activePlayer,p1,p2);
+
         //Undecorate the player
         //TODO
 
@@ -197,9 +303,9 @@ int main(){
             int numTimes = getNumTimes(s);
             s = matchCommand(s, commands);
             executeCommand(s,activePlayer, p1, p2, numTimes);
-            printPlayers(activePlayer,p1,p2);
+			printPlayers(activePlayer,p1,p2);
         } catch(std::exception){
-            std::cout << "\n\n\n\n\n\n\n\n\n\nGame Over!" << std::endl;
+            std::cout << "Game Over!" << std::endl;
             if(activePlayer->getPlayerId() == 0){
                 std::cout << "Player 2 WINS!" << std::endl;
             } else {

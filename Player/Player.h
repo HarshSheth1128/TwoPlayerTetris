@@ -30,6 +30,7 @@ class Player{
     virtual int getScore() = 0;
     virtual char getNextBlock() = 0;
     virtual void setNextBlockChar(char c) = 0;
+    virtual char getNextBlockChar() = 0;
     virtual void setNextBlock() = 0;
     virtual void moveLeft(int times) = 0;
     virtual void moveRight(int times) = 0;
@@ -40,7 +41,6 @@ class Player{
     virtual int drop(int times) = 0;
     virtual void noRandom(std::string sequencefile) = 0;
     virtual void random() = 0;
-    virtual void printBlock() = 0;
     //virtual void print() = 0;
     //virtual void addBlockOnBoard(Block *b) = 0;
 };

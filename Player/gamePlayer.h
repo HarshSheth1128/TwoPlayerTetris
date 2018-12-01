@@ -24,6 +24,7 @@ class GamePlayer: public Player{
     int getScore() override;
     char getNextBlock() override;
     void setNextBlockChar(char c) override;
+    char getNextBlockChar() override;
     void setNextBlock() override;
     void moveLeft(int times) override;
     void moveRight(int times) override;
@@ -34,8 +35,5 @@ class GamePlayer: public Player{
     int drop(int times) override;
     void noRandom(std::string sequencefile) override;
     void random() override;
-    void printBlock() override;
-    //void print() override; 
-    //void addBlockOnBoard(Block *b) override;
 };
 #endif
