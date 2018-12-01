@@ -42,24 +42,24 @@ void ForceDecorator::setNextBlock(){
     player->setNextBlock();
 }
 
-void ForceDecorator::moveLeft(){
-    player->moveLeft();
+void ForceDecorator::moveLeft(int times){
+    player->moveLeft(times);
 }
 
-void ForceDecorator::moveRight(){
-    player->moveRight();
+void ForceDecorator::moveRight(int times){
+    player->moveRight(times);
 }
 
-bool ForceDecorator::moveDown(){
-    return player->moveDown();
+bool ForceDecorator::moveDown(int times){
+    return player->moveDown(times);
 }
 
-void ForceDecorator::rotate(std::string direction){
-    player->rotate(direction);
+void ForceDecorator::rotate(std::string direction, int times){
+    player->rotate(direction, times);
 }
 
-int ForceDecorator::drop(){
-    return player->drop();
+int ForceDecorator::drop(int times){
+    return player->drop(times);
 }
 
 /*
@@ -67,3 +67,23 @@ void ForceDecorator::print(){
     player->print();
 }
 */
+
+char ForceDecorator::getNextBlockChar() {
+    return player->getNextBlockChar();
+}
+
+void ForceDecorator::levelUp() {
+    return levelUp();
+}
+
+void ForceDecorator::levelDown() {
+    return levelDown();
+}
+
+void ForceDecorator::noRandom(std::string sequencefile) {
+    return noRandom(sequencefile);
+}
+
+void ForceDecorator::random() {
+    return random();
+}

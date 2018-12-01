@@ -38,12 +38,12 @@ void HeavyDecorator::setNextBlock(){
     player->setNextBlock();
 }
 
-void HeavyDecorator::moveLeft(){
-    player->moveLeft();
+void HeavyDecorator::moveLeft(int times){
+    player->moveLeft(times);
     if (player->getPlayerId() == player->isPlayerOnePlaying()){
         for (int i = 0; i < 2; i++){
-            if (!player->moveDown()){
-                player->drop();
+            if (!player->moveDown(1)){
+                player->drop(1);
                 //playerOnePlaying = (!playerOnePlaying);
                 return;
             }
@@ -51,16 +51,16 @@ void HeavyDecorator::moveLeft(){
     }
 }
 
-void HeavyDecorator::moveRight(){
-    player->moveRight();
+void HeavyDecorator::moveRight(int times){
+    player->moveRight(times);
     //std::cout << "at 1." << std::endl;
     if (player->getPlayerId() == player->isPlayerOnePlaying()){
       //  std::cout << "at 2." << std::endl;
         for (int i = 0; i < 2; i++){
         //    std::cout << "at 3." << std::endl;
-            if (!player->moveDown()){
+            if (!player->moveDown(1)){
           //      std::cout << "dropping" << std::endl;
-                player->drop();
+                player->drop(1);
                 //playerOnePlaying = (!playerOnePlaying); //this should happen in GamePlayer::drop
                 return;
             }
@@ -72,16 +72,16 @@ void HeavyDecorator::setNextBlockChar(char c){
     player->setNextBlockChar(c);
 }
 
-bool HeavyDecorator::moveDown(){
-    return player->moveDown();
+bool HeavyDecorator::moveDown(int times){
+    return player->moveDown(times);
 }
 
-void HeavyDecorator::rotate(std::string direction){
-    player->rotate(direction);
+void HeavyDecorator::rotate(std::string direction, int times){
+    player->rotate(direction, times);
 }
 
-int HeavyDecorator::drop(){
-    return player->drop();
+int HeavyDecorator::drop(int times){
+    return player->drop(times);
 }
 
 /*
@@ -89,3 +89,23 @@ void HeavyDecorator::print(){
     player->print();
 }
 */
+
+char HeavyDecorator::getNextBlockChar() {
+    return player->getNextBlockChar();
+}
+
+void HeavyDecorator::levelUp() {
+    return levelUp();
+}
+
+void HeavyDecorator::levelDown() {
+    return levelDown();
+}
+
+void HeavyDecorator::noRandom(std::string sequencefile) {
+    return noRandom(sequencefile);
+}
+
+void HeavyDecorator::random() {
+    return random();
+}

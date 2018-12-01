@@ -33,22 +33,22 @@ void LevelDecorator::setNextBlock(){
     player->setNextBlock();
 }
 
-void LevelDecorator::moveLeft(){
-    player->moveLeft();
+void LevelDecorator::moveLeft(int times){
+    player->moveLeft(times);
     if (player->getPlayerId() == player->isPlayerOnePlaying()){
-        if (!player->moveDown()){
-            player->drop();
+        if (!player->moveDown(1)){
+            player->drop(1);
             //playerOnePlaying = (!playerOnePlaying);
             return;
         }
     }
 }
 
-void LevelDecorator::moveRight(){
-    player->moveRight();
+void LevelDecorator::moveRight(int times){
+    player->moveRight(times);
     if (player->getPlayerId() == player->isPlayerOnePlaying()){
-        if (!player->moveDown()){
-            player->drop();
+        if (!player->moveDown(1)){
+            player->drop(1);
             //playerOnePlaying = (!playerOnePlaying); //this should happen in GamePlayer::drop
             return;
         }
@@ -59,21 +59,21 @@ void LevelDecorator::setNextBlockChar(char c){
     player->setNextBlockChar(c);
 }
 
-bool LevelDecorator::moveDown(){
+bool LevelDecorator::moveDown(int times){
     //bool lastMove = player->moveDown();
-    player->moveDown();
-    if (!player->moveDown()){
-        player->drop();
+    player->moveDown(times);
+    if (!player->moveDown(1)){
+        player->drop(1);
             return false;
     }
     return true;
 }
 
 
-void LevelDecorator::rotate(std::string direction){
-    player->rotate(direction);
-    if (!player->moveDown()){
-        player->drop();
+void LevelDecorator::rotate(std::string direction, int times){
+    player->rotate(direction, times);
+    if (!player->moveDown(1)){
+        player->drop(1);
         //playerOnePlaying = (!playerOnePlaying); //this should happen in GamePlayer::drop
         return;
     }
@@ -83,8 +83,8 @@ void LevelDecorator::printRow (int rowNum) {
     player->printRow(rowNum);
 }
 
-int LevelDecorator::drop(){
-    return player->drop();
+int LevelDecorator::drop(int times){
+    return player->drop(times);
 }
 
 /*
@@ -92,3 +92,23 @@ void LevelDecorator::print(){
     player->print();
 }
 */
+
+char LevelDecorator::getNextBlockChar() {
+    return player->getNextBlockChar();
+}
+
+void LevelDecorator::levelUp() {
+    return levelUp();
+}
+
+void LevelDecorator::levelDown() {
+    return levelDown();
+}
+
+void LevelDecorator::noRandom(std::string sequencefile) {
+    return noRandom(sequencefile);
+}
+
+void LevelDecorator::random() {
+    return random();
+}

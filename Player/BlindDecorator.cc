@@ -66,24 +66,24 @@ void BlindDecorator::setNextBlock(){
     player->setNextBlock();
 }
 
-void BlindDecorator::moveLeft(){
-    player->moveLeft();
+void BlindDecorator::moveLeft(int times){
+    player->moveLeft(times);
 }
 
-void BlindDecorator::moveRight(){
-    player->moveRight();
+void BlindDecorator::moveRight(int times){
+    player->moveRight(times);
 }
 
-bool BlindDecorator::moveDown(){
-    return player->moveDown();
+bool BlindDecorator::moveDown(int times){
+    return player->moveDown(times);
 }
 
-void BlindDecorator::rotate(std::string direction){
-    player->rotate(direction);
+void BlindDecorator::rotate(std::string direction, int times){
+    player->rotate(direction, times);
 }
 
-int BlindDecorator::drop(){
-    return player->drop();
+int BlindDecorator::drop(int times){
+    return player->drop(times);
 }
 
 /*
@@ -91,3 +91,23 @@ void BlindDecorator::print(){
     player->print();
 }
 */
+
+char BlindDecorator::getNextBlockChar() {
+    return player->getNextBlockChar();
+}
+
+void BlindDecorator::levelUp() {
+    return levelUp();
+}
+
+void BlindDecorator::levelDown() {
+    return levelDown();
+}
+
+void BlindDecorator::noRandom(std::string sequencefile) {
+    return noRandom(sequencefile);
+}
+
+void BlindDecorator::random() {
+    return random();
+}

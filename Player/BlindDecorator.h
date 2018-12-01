@@ -20,11 +20,16 @@ class BlindDecorator: public EffectsDecorator{
     int getScore() override;
     char getNextBlock() override;
     void setNextBlock() override;
-    void moveLeft() override;
-    void moveRight() override;
-    bool moveDown() override;
-    void rotate(std::string direction) override;
-    int drop() override;
+    void moveLeft(int times) override;
+    void moveRight(int times) override;
+    bool moveDown(int times) override;
+    void rotate(std::string direction, int times) override;
+    int drop(int times) override;
+    char getNextBlockChar() override;
+    void levelUp() override;
+    void levelDown() override;
+    void noRandom(std::string sequencefile) override;
+    void random() override;
     //void print() override;
 };
 

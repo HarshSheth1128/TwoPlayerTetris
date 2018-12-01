@@ -33,10 +33,6 @@ bool GamePlayer::getPlayerId(){
     return this->playerId;
 }
 
-void GamePlayer::setNextBlockChar(char c){
-    nextBlock = c;
-}
-
 std::vector<GridCell>* GamePlayer::getRow(int rowNum){
   return grid->getRow(rowNum);
 }
@@ -102,12 +98,11 @@ void GamePlayer::moveRight(int times) {
 
 bool GamePlayer::moveDown(int times) {
   for(int i = times; i > 0; i--){
-    if(i == 1){
-      return currBlock->moveDown();
-    }
-    currBlock->moveDown();
+    if(currBlock->moveDown() == false){
+      return false;
+    };
   }
-  return false;
+  return true;
 }
 
 void GamePlayer::rotate(std::string direction, int times){

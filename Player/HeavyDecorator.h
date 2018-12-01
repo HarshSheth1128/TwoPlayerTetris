@@ -1,5 +1,5 @@
 #ifndef _HEAVYDECORATOR_H_
-#define _HAEVYDECORATOR_H_
+#define _HEAVYDECORATOR_H_
 
 #include "Player.h"
 #include "EffectsDecorator.h"
@@ -20,11 +20,16 @@ class HeavyDecorator: public EffectsDecorator{
     void setNextBlockChar(char c) override;
     char getNextBlock() override;
     void setNextBlock() override;
-    void moveLeft() override;
-    void moveRight() override;
-    bool moveDown() override;
-    void rotate(std::string direction) override;
-    int drop() override;
+    void moveLeft(int times) override;
+    void moveRight(int times) override;
+    bool moveDown(int times) override;
+    void rotate(std::string direction, int times) override;
+    int drop(int times) override;
+    char getNextBlockChar() override;
+    void levelUp() override;
+    void levelDown() override;
+    void noRandom(std::string sequencefile) override;
+    void random() override;
     //void print() override;
 };
 

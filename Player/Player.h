@@ -27,7 +27,6 @@ class Player{
     bool isPlayerOnePlaying();
     int getGridWidth();
     int getGridHeight();
-    virtual void setNextBlockChar(char c) = 0;
     virtual int getLevel() = 0;
     virtual int getScore() = 0;
     virtual char getNextBlock() = 0;

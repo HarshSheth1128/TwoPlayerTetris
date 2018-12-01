@@ -1,5 +1,10 @@
 #include "Player/Player.h"
 #include "Player/gamePlayer.h"
+#include "Player/BlindDecorator.h"
+#include "Player/EffectsDecorator.h"
+#include "Player/ForceDecorator.h"
+#include "Player/LevelDecorator.h"
+#include "Player/HeavyDecorator.h"
 #include "Blocks/OBlock.h"
 #include "Blocks/JBlock.h"
 #include "Blocks/IBlock.h"
@@ -20,6 +25,7 @@
 #include <regex>
 #include <sstream>
 #include <stdlib.h>
+#include <fstream>
 
 void printPlayerBlocks(Player* p1, Player* p2){
 	char p1NextBlock = p1->getNextBlockChar();
@@ -92,6 +98,9 @@ void printPlayerBlocks(Player* p1, Player* p2){
 	case 'O':
 		std::cout << " OO         ";
 		break;
+	case 'I':
+		std::cout << "            ";
+	break;
 	}
 	std::cout << "\t\t ";
 	switch (p2NextBlock) {
@@ -113,6 +122,9 @@ void printPlayerBlocks(Player* p1, Player* p2){
 		case 'O':
 			std::cout << " OO         " << std::endl;
 			break;
+		case 'I':
+			std::cout << "            " << std::endl;
+		break;
 	}
 
 }
@@ -237,11 +249,25 @@ void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &
         activePlayer->rotate("CCW", times);
     } else if (s == "drop"){
         //If they clear two or more lines, then take input for the other player
-        //TODO
-
-        if(activePlayer->drop(times) >= 2){
-            //Add decorator to active player
-        };
+		if(activePlayer->drop(times) >= 2){
+			while(true){
+				std::string decorator;
+				std::cin >> decorator;
+				if(decorator == "blind"){
+					if(activePlayer->getPlayerId() == 1) {p2 = new BlindDecorator(p2);}
+					else {p1 = new BlindDecorator(p1);}
+				} else if (decorator == "heavy"){
+					if(activePlayer->getPlayerId() == 1) {p2 = new HeavyDecorator(p2);}
+					else {p1 = new HeavyDecorator(p1);}
+				} else if (decorator == "force"){
+					char type;
+					std::cin >> type;
+					if(activePlayer->getPlayerId() == 1) {p2 = new ForceDecorator(p2, type);}
+					else {p1 = new ForceDecorator(p1, type);}
+				}
+			}
+		}
+		
 
 		printPlayers(activePlayer,p1,p2);
 
@@ -269,7 +295,10 @@ void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &
     } else if (s == "sequence"){
         std::string sequencefile;
         std::cin >> sequencefile;
-        //activePlayer->sequence();
+		std::ifstream inputFile{sequencefile};
+        /*while(){
+			std::string command
+		}*/
     } else if (s == "restart"){
         //TODO
     } else if (s == "I" || s == "J" || s == "L" || s == "S" || s == "Z" || s == "T" || s == "O"){
