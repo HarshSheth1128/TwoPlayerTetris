@@ -1,10 +1,3 @@
-#ifndef __EFFECTSDECORATOR_H__
-#define __EFFECTSDECORATOR_H__
-#include "Player.h"
-#include "gamePlayer.h"
+#include "EffectsDecorator.h"
 
-class EffectsDecorator: public Public{
-	public:
-	virtual ~EffectsDecorator() = 0; //pure virtual destructor for this abstract class
-};
-#endif
+EffectsDecorator::~EffectsDecorator(){};

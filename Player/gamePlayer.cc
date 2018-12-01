@@ -136,7 +136,7 @@ void GamePlayer::shiftCellsDown(int rowCleared){
   }
   //Set the block cells to one cell below the current
   for(auto i : blocksOnBoard){
-    i->moveCellsDown();
+    i->moveCellsDown(rowCleared);
   }
   
 }
