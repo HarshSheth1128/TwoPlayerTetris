@@ -1,11 +1,9 @@
 #ifndef __BLOCK_H__
 #define __BLOCK_H__
-
 #include <vector>   
 #include <iostream>
 #include "../Grid/GridCell.h"
 #include "../Grid/Grid.h"
-
 class Block {
     char type;
     std::vector<int> xCoords;
@@ -31,5 +29,4 @@ class Block {
     void moveCellsDown(int rowCleared);
     int numCells();
 };
-
 #endif

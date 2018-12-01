@@ -12,5 +12,4 @@ class SBlock : public Block {
     SBlock(Grid* g);
     ~SBlock();
 };
-
 #endif

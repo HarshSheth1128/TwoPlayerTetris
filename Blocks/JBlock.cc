@@ -19,6 +19,3 @@ JBlock::JBlock(Grid* g):Block(g, 'J'){
 }
 
 JBlock::~JBlock(){}
-
-
-

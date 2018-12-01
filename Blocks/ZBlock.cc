@@ -19,4 +19,3 @@ ZBlock::ZBlock(Grid* g):Block(g, 'Z'){
 }
 
 ZBlock::~ZBlock(){}
-

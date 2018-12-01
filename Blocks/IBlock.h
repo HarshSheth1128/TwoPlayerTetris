@@ -8,5 +8,4 @@ class IBlock : public Block{
     IBlock(Grid* g);
     ~IBlock();
 };
-
 #endif

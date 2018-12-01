@@ -19,7 +19,3 @@ LBlock::LBlock(Grid* g):Block(g, 'L'){
 }
 
 LBlock::~LBlock(){}
-
-
-
-

@@ -19,4 +19,3 @@ SBlock::SBlock(Grid* g):Block(g, 'S'){
 }
 
 SBlock::~SBlock(){}
-

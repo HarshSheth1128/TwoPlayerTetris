@@ -12,5 +12,4 @@ class ZBlock : public Block {
     ZBlock(Grid* g);
     ~ZBlock();
 };
-
 #endif

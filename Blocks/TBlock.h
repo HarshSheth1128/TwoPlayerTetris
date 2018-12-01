@@ -12,5 +12,4 @@ class TBlock : public Block{
     TBlock(Grid* g);
     ~TBlock();
 };
-
 #endif
