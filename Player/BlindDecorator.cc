@@ -33,15 +33,17 @@ std::vector<GridCell>* BlindDecorator::getRow(int rowNum){
 void BlindDecorator::printRow (int rowNum) {
     std::vector<GridCell> gridRow = *(player->getRow(rowNum));
     for (int i = 0; i < player->getGridWidth(); i++){
-        if ((rowNum >= 3) and (rowNum <= 12) and (i >= 3) and (i <= 9)){
+        if ((rowNum >= 6) and (rowNum <= 15) and (i >= 3) and (i <= 9)){
             std::cout << "?";
         }
         else{
             std::cout << gridRow.at(i);
         }
     }
-    std::cout << std::endl;
-    std::cout << "-----------" << std::endl;
+}
+
+void BlindDecorator::setNextBlockChar(char c){
+    player->setNextBlockChar(c);
 }
 
 bool BlindDecorator::getPlayerId(){

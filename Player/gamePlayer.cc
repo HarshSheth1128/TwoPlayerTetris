@@ -33,6 +33,9 @@ bool GamePlayer::getPlayerId(){
     return this->playerId;
 }
 
+void GamePlayer::setNextBlockChar(char c){
+    nextBlock = c;
+}
 
 std::vector<GridCell>* GamePlayer::getRow(int rowNum){
   return grid->getRow(rowNum);
@@ -282,6 +285,9 @@ int GamePlayer::drop(int times) {
   //Add to the score
   if(numRowsCleared!= 0) score += level->getScore(numRowsCleared);
   
+  //change the player
+  playerOnePlaying = !playerOnePlaying;
+
   //Return the num rows cleared
   return numRowsCleared;
 }

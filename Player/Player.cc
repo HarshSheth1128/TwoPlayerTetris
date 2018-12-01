@@ -15,3 +15,9 @@ int Player::getGridHeight(){
 }
 
 bool Player::playerOnePlaying = true;
+
+bool Player::isPlayerOnePlaying(){
+    return playerOnePlaying; 
+}
+
+

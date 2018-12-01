@@ -3,20 +3,22 @@
 #include <stdexcept>
 #include "ForceDecorator.h"
 
-ForceDecorator::ForceDecorator(Player *component): player{component}{}
+ForceDecorator::ForceDecorator(Player *component, char type): player{component}, blockType{type}{}
 
 ForceDecorator::~ForceDecorator(){
     delete player;
 }
 
-
 std::vector<GridCell>* ForceDecorator::getRow(int rowNum){
     return player->getRow(rowNum);
 }
 
-
 void ForceDecorator::printRow (int rowNum) {
     player->printRow(rowNum);
+}
+
+void ForceDecorator::setNextBlockChar(char c){
+    player->setNextBlockChar(c);
 }
 
 bool ForceDecorator::getPlayerId(){
@@ -36,6 +38,7 @@ char ForceDecorator::getNextBlock(){
 }
 
 void ForceDecorator::setNextBlock(){
+    player->setNextBlockChar(this->blockType);
     player->setNextBlock();
 }
 

@@ -35,7 +35,7 @@ void LevelDecorator::setNextBlock(){
 
 void LevelDecorator::moveLeft(){
     player->moveLeft();
-    if (playerId == playerOnePlaying){
+    if (player->getPlayerId() == player->isPlayerOnePlaying()){
         if (!player->moveDown()){
             player->drop();
             //playerOnePlaying = (!playerOnePlaying);
@@ -46,7 +46,7 @@ void LevelDecorator::moveLeft(){
 
 void LevelDecorator::moveRight(){
     player->moveRight();
-    if (playerId == playerOnePlaying){
+    if (player->getPlayerId() == player->isPlayerOnePlaying()){
         if (!player->moveDown()){
             player->drop();
             //playerOnePlaying = (!playerOnePlaying); //this should happen in GamePlayer::drop
@@ -55,13 +55,15 @@ void LevelDecorator::moveRight(){
     }
 }
 
-//This might be a problem: because right and left moves in heavydecorator are calling movedown. So reconsider
+void LevelDecorator::setNextBlockChar(char c){
+    player->setNextBlockChar(c);
+}
+
 bool LevelDecorator::moveDown(){
     //bool lastMove = player->moveDown();
     player->moveDown();
     if (!player->moveDown()){
         player->drop();
-            //playerOnePlaying = (!playerOnePlaying); //this should happen in GamePlayer::drop
             return false;
     }
     return true;
