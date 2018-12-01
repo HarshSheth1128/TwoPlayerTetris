@@ -34,8 +34,8 @@ char HeavyDecorator::getNextBlock(){
     return player->getNextBlock();
 }
 
-void HeavyDecorator::setNextBlock(char b){
-    player->setNextBlock(b);
+void HeavyDecorator::setNextBlock(){
+    player->setNextBlock();
 }
 
 void HeavyDecorator::moveLeft(){
@@ -72,8 +72,8 @@ void HeavyDecorator::rotate(std::string direction){
     player->rotate(direction);
 }
 
-void HeavyDecorator::drop(){
-    player->drop();
+int HeavyDecorator::drop(){
+    return player->drop();
 }
 
 /*

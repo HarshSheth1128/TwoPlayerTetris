@@ -10,8 +10,11 @@ class GamePlayer: public Player{
     std::vector<Block*> blocksOnBoard;
     void shiftCellsDown(int y);
     void removeEmptyBlocks();
+    void printBlock();
 
     public:
+    // xWindow *window;
+
     //GamePlayer::GamePlayer(xWindow &w);
     GamePlayer(Grid *grid, Level *level, bool id);
     ~GamePlayer();
@@ -22,12 +25,12 @@ class GamePlayer: public Player{
     int getLevel() override;
     int getScore() override;
     char getNextBlock() override;
-    void setNextBlock(char b) override;
+    void setNextBlock() override;
     void moveLeft() override;
     void moveRight() override;
     bool moveDown() override;
     void rotate(std::string direction) override;
-    void drop() override;
+    int drop() override;
     //void print() override; 
     //void addBlockOnBoard(Block *b) override;
 };

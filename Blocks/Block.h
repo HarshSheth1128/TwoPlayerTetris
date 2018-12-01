@@ -12,9 +12,11 @@ class Block {
     std::pair<int, int> topLeft;
     std::pair<int, int> newBottomLeft; 
     void shiftCoordinates (std::vector<int> &, int shift);
+
     protected:
     std::vector<GridCell*> blockCells;
     Grid *grid;
+
     public:
     Block(Grid* g, char type);
     virtual ~Block() = 0;

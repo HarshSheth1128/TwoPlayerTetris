@@ -1,7 +1,10 @@
 #include "Block.h"
 #include <algorithm>
+
 Block::Block(Grid* g, char c):grid(g),type(c){}
+
 Block::~Block(){}
+
 void Block::setUpBlock(){
     //Set the character type for all cells that this block occupies
     for(auto i: blockCells){
@@ -198,8 +201,12 @@ void Block::moveCellsDown(int rowCleared){
         }
     }
 }
+
 //Get number of cells in the block
 int Block::numCells(){
     return blockCells.size();
 }
+
+
+
 

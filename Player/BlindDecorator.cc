@@ -60,8 +60,8 @@ char BlindDecorator::getNextBlock(){
     return player->getNextBlock();
 }
 
-void BlindDecorator::setNextBlock(char b){
-    player->setNextBlock(b);
+void BlindDecorator::setNextBlock(){
+    player->setNextBlock();
 }
 
 void BlindDecorator::moveLeft(){
@@ -80,8 +80,8 @@ void BlindDecorator::rotate(std::string direction){
     player->rotate(direction);
 }
 
-void BlindDecorator::drop(){
-    player->drop();
+int BlindDecorator::drop(){
+    return player->drop();
 }
 
 /*

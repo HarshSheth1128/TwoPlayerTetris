@@ -18,12 +18,12 @@ class LevelDecorator: public EffectsDecorator{
     int getLevel() override;
     int getScore() override;
     char getNextBlock() override;
-    void setNextBlock(char b) override;
+    void setNextBlock() override;
     void moveLeft()override;
     void moveRight()override;
     bool moveDown()override;
     void rotate(std::string direction)override;
-    void drop() override;
+    int drop() override;
     //void print() override;
 };
 

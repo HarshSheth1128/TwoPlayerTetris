@@ -16,6 +16,7 @@ IBlock::IBlock(Grid *g): Block(g, 'I'){
     blockCells = tmp;
     setUpBlock();
 }
+
 IBlock::~IBlock(){}
 
 

@@ -35,8 +35,8 @@ char ForceDecorator::getNextBlock(){
     return player->getNextBlock();
 }
 
-void ForceDecorator::setNextBlock(char b){
-    player->setNextBlock(b);
+void ForceDecorator::setNextBlock(){
+    player->setNextBlock();
 }
 
 void ForceDecorator::moveLeft(){
@@ -55,8 +55,8 @@ void ForceDecorator::rotate(std::string direction){
     player->rotate(direction);
 }
 
-void ForceDecorator::drop(){
-    player->drop();
+int ForceDecorator::drop(){
+    return player->drop();
 }
 
 /*
