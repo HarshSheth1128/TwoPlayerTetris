@@ -12,6 +12,7 @@ class HeavyDecorator: public EffectsDecorator{
     public:
     HeavyDecorator(Player *component);
     ~HeavyDecorator() override;
+    Player* getBasePlayer() override;
     std::vector<GridCell>* getRow(int rowNum) override;
     void printRow (int rowNum) override;
     bool getPlayerId() override;

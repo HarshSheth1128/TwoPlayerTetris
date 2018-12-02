@@ -10,6 +10,14 @@ BlindDecorator::~BlindDecorator(){
     delete player;
 }
 
+Player* BlindDecorator::getBasePlayer(){
+    Player *tmp = player->getBasePlayer();
+    if (tmp != player){
+        delete player;
+    }
+    return tmp;
+}
+
 /*
 std::vector<GridCell>* BlindDecorator::getRow(int rowNum){
     std::vector<GridCell> *origVec = player->getRow(rowNum);

@@ -9,6 +9,14 @@ ForceDecorator::~ForceDecorator(){
     delete player;
 }
 
+Player* ForceDecorator::getBasePlayer(){
+    Player *tmp = player->getBasePlayer();
+    if (tmp != player){
+        delete player;
+    }
+    return tmp;
+}
+
 std::vector<GridCell>* ForceDecorator::getRow(int rowNum){
     return player->getRow(rowNum);
 }

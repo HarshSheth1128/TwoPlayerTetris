@@ -17,7 +17,7 @@ class GamePlayer: public Player{
     GamePlayer(Grid *grid, Level *level, bool id);
     ~GamePlayer();
     bool getPlayerId() override;
-    //Player* getBasePlayer() override;
+    Player* getBasePlayer() override;
     std::vector<GridCell>* getRow(int rowNum) override;
     void printRow (int rowNum) override;
     int getLevel() override;

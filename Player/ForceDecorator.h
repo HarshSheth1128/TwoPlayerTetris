@@ -13,6 +13,7 @@ class ForceDecorator: public EffectsDecorator{
     public:
     ForceDecorator(Player *component, char type);
     ~ForceDecorator() override;
+    Player* getBasePlayer() override;
     std::vector<GridCell>* getRow(int rowNum) override;
     void printRow (int rowNum) override;
     bool getPlayerId() override;

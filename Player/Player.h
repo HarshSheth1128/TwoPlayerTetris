@@ -23,7 +23,7 @@ class Player{
     virtual std::vector<GridCell>* getRow(int rowNum) = 0;
     virtual void printRow (int rowNum) = 0;
     virtual bool getPlayerId() = 0;
-    //virtual Player* getBasePlayer() = 0;
+    virtual Player* getBasePlayer() = 0;
     bool isPlayerOnePlaying();
     int getGridWidth();
     int getGridHeight();

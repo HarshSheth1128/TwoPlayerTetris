@@ -33,6 +33,11 @@ bool GamePlayer::getPlayerId(){
     return this->playerId;
 }
 
+Player* GamePlayer::getBasePlayer() {
+  return this;
+}
+
+
 std::vector<GridCell>* GamePlayer::getRow(int rowNum){
   return grid->getRow(rowNum);
 }

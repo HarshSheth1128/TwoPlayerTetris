@@ -12,6 +12,7 @@ class BlindDecorator: public EffectsDecorator{
     public:
     BlindDecorator(Player *component);
     ~BlindDecorator() override;
+    Player* getBasePlayer() override;
     std::vector<GridCell>* getRow(int rowNum) override;
     void printRow (int rowNum) override;
     bool getPlayerId() override;

@@ -9,6 +9,14 @@ HeavyDecorator::~HeavyDecorator(){
      delete player;
 }
 
+Player* HeavyDecorator::getBasePlayer(){
+    Player *tmp = player->getBasePlayer();
+    if (tmp != player){
+        delete player;
+    }
+    return tmp;
+}
+
 std::vector<GridCell>* HeavyDecorator::getRow(int rowNum){
      return player->getRow(rowNum);
 }
