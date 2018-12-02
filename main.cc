@@ -32,130 +32,138 @@ void printPlayerBlocks(Player* p1, Player* p2){
 	char p2NextBlock = p2->getNextBlockChar();
 	switch (p1NextBlock) {
 	case 'S':
-		std::cout << "  SS        ";
+		std::cout << "║  SS       ║";
 		break;
 	case 'Z':
-		std::cout << " ZZ         ";
+		std::cout << "║ ZZ        ║";
 		break;
 	case 'T':
-		std::cout << " TTT        ";
+		std::cout << "║ TTT       ║";
 		break;
 	case 'L':
-		std::cout << "   L        ";
+		std::cout << "║   L       ║";
 		break;
 	case 'J':
-		std::cout << " J          ";
+		std::cout << "║ J         ║";
 		break;
 	case 'O':
-		std::cout << " OO         ";
+		std::cout << "║ OO        ║";
 		break;
 	case 'I':
-		std::cout << " IIII       ";
+		std::cout << "║ IIII      ║";
 		break;
 	}
-	std::cout << "\t\t ";
+	std::cout << "\t\t";
 	//Print second block first row
 	switch (p2NextBlock) {
 	case 'S':
-		std::cout << "  SS        " << std::endl;
+		std::cout << "║  SS       ║" << std::endl;
 		break;
 	case 'Z':
-		std::cout << " ZZ         " << std::endl;
+		std::cout << "║ ZZ        ║" << std::endl;
 		break;
 	case 'T':
-		std::cout << " TTT        " << std::endl;
+		std::cout << "║ TTT       ║" << std::endl;
 		break;
 	case 'L':
-		std::cout << "   L        " << std::endl;
+		std::cout << "║   L       ║" << std::endl;
 		break;
 	case 'J':
-		std::cout << " J          " << std::endl;
+		std::cout << "║ J         ║" << std::endl;
 		break;
 	case 'O':
-		std::cout << " OO         " << std::endl;
+		std::cout << "║ OO        ║" << std::endl;
 		break;
 	case 'I':
-		std::cout << " IIII       " << std::endl;
+		std::cout << "║ IIII      ║" << std::endl;
 		break;
 	}
 
 	switch (p1NextBlock) {
 	case 'S':
-		std::cout << " SS         ";
+		std::cout << "║ SS        ║";
 		break;
 	case 'Z':
-		std::cout << "  ZZ        ";
+		std::cout << "║  ZZ       ║";
 		break;
 	case 'T':
-		std::cout << "  T         ";
+		std::cout << "║  T        ║";
 		break;
 	case 'L':
-		std::cout << " LLL        ";
+		std::cout << "║ LLL       ║";
 		break;
 	case 'J':
-		std::cout << " JJJ        ";
+		std::cout << "║ JJJ       ║";
 		break;
 	case 'O':
-		std::cout << " OO         ";
+		std::cout << "║ OO        ║";
 		break;
 	case 'I':
-		std::cout << "            ";
+		std::cout << "║           ║";
 	break;
 	}
-	std::cout << "\t\t ";
+	std::cout << "\t\t";
 	switch (p2NextBlock) {
 		case 'S':
-			std::cout << " SS         " << std::endl;
+			std::cout << "║ SS        ║" << std::endl;
 			break;
 		case 'Z':
-			std::cout << "  ZZ        " << std::endl;
+			std::cout << "║  ZZ       ║" << std::endl;
 			break;
 		case 'T':
-			std::cout << "  T         " << std::endl;
+			std::cout << "║  T        ║" << std::endl;
 			break;
 		case 'L':
-			std::cout << " LLL        " << std::endl;
+			std::cout << "║ LLL       ║" << std::endl;
 			break;
 		case 'J':
-			std::cout << " JJJ        " << std::endl;
+			std::cout << "║ JJJ       ║" << std::endl;
 			break;
 		case 'O':
-			std::cout << " OO         " << std::endl;
+			std::cout << "║ OO        ║" << std::endl;
 			break;
 		case 'I':
-			std::cout << "            " << std::endl;
+			std::cout << "║           ║" << std::endl;
 		break;
 	}
 
 }
 
-void printPlayers(Player* activePlayer, Player *p1, Player *p2){
+void printPlayers(Player* activePlayer, Player *p1, Player *p2, int highScore){
     system("clear");
-    std::cout << " Level:    " << p1->getLevel() << "\t\t" << " Level:    " << p2->getLevel() << std::endl;
-    std::cout << " Score:    " << p1->getScore() << "\t\t" << " Score:    " << p2->getScore() << std::endl;
-    std::cout << "+-----------+\t\t+-----------+" << std::endl;
+	std::cout << "+====================+" << std::endl;
+	std::cout << " HIGHSCORE       " << highScore << std::endl;
+	std::cout << "+====================+" << std::endl;
+    std::cout << " Level:   " << p1->getLevel() << " \t\t" << " Level:   " << p2->getLevel() << std::endl;
+    std::cout << " Score:   " << p1->getScore() << " \t\t" << " Score:   " << p2->getScore() << std::endl;
+    std::cout << "+===========+\t\t+===========+" << std::endl;
+	std::cout << "╔═══════════╗\t\t╔═══════════╗" << std::endl;
     for(int i = 0; i < 18; i++){
-		if(i != 2) std::cout << "|";
-		else std::cout << "+";
+		if(i != 2) std::cout << "║";
+		else std::cout << "╠";
         p1->printRow(i);
-		if(i != 2) std::cout << "|";
-		else std::cout << "+";
+		if(i != 2) std::cout << "║";
+		else std::cout << "╣";
         std::cout << "\t\t";
-		if(i != 2) std::cout << "|";
-		else std::cout << "+";
+		if(i != 2) std::cout << "║";
+		else std::cout << "╠";
         p2->printRow(i);
-        if(i != 2) std::cout << "|" << std::endl;
-		else std::cout << "+" << std::endl;
+        if(i != 2) std::cout << "║" << std::endl;
+		else std::cout << "╣" << std::endl;
     }
-    std::cout << "+-----------+\t\t+-----------+" << std::endl;
-    std::cout << " Next:      \t\t Next:      " << std::endl;
+    std::cout << "╚═══════════╝\t\t╚═══════════╝" << std::endl;
+	//std::cout << std::endl;
+	std::cout << "╔═══════════╗\t\t╔═══════════╗" << std::endl;
+    std::cout << "║ Next:     ║\t\t║ Next:     ║" << std::endl;
 	printPlayerBlocks(p1,p2);
+	std::cout << "╚═══════════╝\t\t╚═══════════╝" << std::endl;
 	std::cout << std::endl;
 	if(activePlayer->getPlayerId() == 1){
         std::cout << "Player One's Turn" << std::endl;
     } else {
         std::cout << "Player Two's Turn" << std::endl;
     }
+	std::cout << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯" << std::endl;
     std::cout << "Command: " << std::endl;
 }
 
@@ -204,6 +212,7 @@ std::vector<std::string> initVector(){
     tmp.emplace_back("S");
     tmp.emplace_back("Z");
     tmp.emplace_back("O");
+	tmp.emplace_back("restart");
     return tmp;
 }
 
@@ -236,7 +245,7 @@ std::string matchCommand(std::string input, std::vector<std::string> commands){
 }
 
 //Execute the command given
-void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &p2, std::vector<std::string> commands, int times = 1){
+void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &p2, std::vector<std::string> commands, int highScore, int times = 1){
     if(s == "left"){
         activePlayer->moveLeft(times);
     } else if (s == "right"){
@@ -269,7 +278,7 @@ void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &
 		}
 		
 		//Print before setting the nextBlock as game could be over
-		printPlayers(activePlayer,p1,p2);
+		printPlayers(activePlayer,p1,p2, highScore);
 
         //Undecorate the player
         //TODO
@@ -301,10 +310,10 @@ void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &
 			getline(inputFile,command);
 			int numTimes = getNumTimes(command);
             command = matchCommand(command, commands);
-            executeCommand(command,activePlayer, p1, p2, commands, numTimes);
+            executeCommand(command,activePlayer, p1, p2, commands, highScore, numTimes);
 		}
     } else if (s == "restart"){
-        //TODO
+        throw std::string("restart");
     } else if (s == "I" || s == "J" || s == "L" || s == "S" || s == "Z" || s == "T" || s == "O"){
         activePlayer->replaceBlock(s[0]);
     }
@@ -314,37 +323,46 @@ void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &
 
 int main(){    
     //Initialize Game
-    std::vector<std::string> commands = initVector();
-    Grid *g1 = new Grid();
-    Grid *g2 = new Grid();
-    Level *p1Level = getLevel(1);
-    Level *p2Level = getLevel(0);
-    Player *p1 = new GamePlayer(g1,p1Level, 1);
-    Player *p2 = new GamePlayer(g2,p2Level, 0);
-    p1->setNextBlock();
-    p2->setNextBlock();
+	int highScore = 0;
+	while(true){
+		std::vector<std::string> commands = initVector();
+		Grid *g1 = new Grid();
+		Grid *g2 = new Grid();
+		Level *p1Level = getLevel(1);
+		Level *p2Level = getLevel(0);
+		Player *p1 = new GamePlayer(g1,p1Level, 1);
+		Player *p2 = new GamePlayer(g2,p2Level, 0);
+		p1->setNextBlock();
+		p2->setNextBlock();
 
-    //Set active player to player one
-    Player *activePlayer = p1;
+		//Set active player to player one
+		Player *activePlayer = p1;
 
-    //GAME LOOP
-    printPlayers(activePlayer, p1,p2);
-    while(!std::cin.fail()){
-        try{
-            std::string s;
-            std::cin >> s;
-            int numTimes = getNumTimes(s);
-            s = matchCommand(s, commands);
-            executeCommand(s,activePlayer, p1, p2, commands, numTimes);
-			printPlayers(activePlayer,p1,p2);
-        } catch(std::exception){
-            std::cout << "Game Over!" << std::endl;
-            if(activePlayer->getPlayerId() == 0){
-                std::cout << "Player 2 WINS!" << std::endl;
-            } else {
-                std::cout << "Player 1 WINS!" << std::endl;
-            }
-        }
-    }
+		//GAME LOOP
+		printPlayers(activePlayer,p1,p2,highScore);
+		while(!std::cin.fail()){
+			try{
+				std::string s;
+				std::cin >> s;
+				int numTimes = getNumTimes(s);
+				s = matchCommand(s, commands);
+				executeCommand(s,activePlayer, p1, p2, commands, highScore, numTimes);
+				if(p1->getScore() > highScore || p2->getScore() > highScore) highScore += std::max(p1->getScore(), p2->getScore());
+				printPlayers(activePlayer,p1,p2,highScore);
+			} catch(std::exception){
+				std::cout << "Game Over!" << std::endl;
+				if(activePlayer->getPlayerId() == 0){
+					std::cout << "Player 2 WINS!" << std::endl;
+				} else {
+					std::cout << "Player 1 WINS!" << std::endl;
+				}
+				break;
+			} catch (std::string) {
+				break;
+			}
+		}
+		delete p1;
+		delete p2;
+	}
 }
 
