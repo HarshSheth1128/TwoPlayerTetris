@@ -94,12 +94,12 @@ char HeavyDecorator::getNextBlockChar() {
     return player->getNextBlockChar();
 }
 
-void HeavyDecorator::levelUp() {
-    return levelUp();
+void HeavyDecorator::levelUp(int times) {
+    return levelUp(times);
 }
 
-void HeavyDecorator::levelDown() {
-    return levelDown();
+void HeavyDecorator::levelDown(int times) {
+    return levelDown(times);
 }
 
 void HeavyDecorator::noRandom(std::string sequencefile) {

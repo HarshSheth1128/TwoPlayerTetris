@@ -37,8 +37,8 @@ class Player{
     virtual void moveRight(int times) = 0;
     virtual bool moveDown(int times) = 0;
     virtual void rotate(std::string direction, int times) = 0;
-    virtual void levelUp() = 0;
-    virtual void levelDown() = 0;
+    virtual void levelUp(int times) = 0;
+    virtual void levelDown(int times) = 0;
     virtual int drop(int times) = 0;
     virtual void noRandom(std::string sequencefile) = 0;
     virtual void random() = 0;

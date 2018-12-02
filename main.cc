@@ -285,9 +285,9 @@ void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &
             activePlayer = p1;
         }
     } else if (s == "levelup"){
-        activePlayer->levelUp();
+        activePlayer->levelUp(times);
     } else if (s == "leveldown"){
-        activePlayer->levelDown();
+        activePlayer->levelDown(times);
     } else if (s == "norandom"){
         std::string sequencefile;
         std::cin >> sequencefile;

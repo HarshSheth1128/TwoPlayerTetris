@@ -96,12 +96,12 @@ char BlindDecorator::getNextBlockChar() {
     return player->getNextBlockChar();
 }
 
-void BlindDecorator::levelUp() {
-    return levelUp();
+void BlindDecorator::levelUp(int times) {
+    return levelUp(times);
 }
 
-void BlindDecorator::levelDown() {
-    return levelDown();
+void BlindDecorator::levelDown(int times) {
+    return levelDown(times);
 }
 
 void BlindDecorator::noRandom(std::string sequencefile) {
