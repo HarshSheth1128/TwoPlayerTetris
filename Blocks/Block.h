@@ -28,5 +28,6 @@ class Block {
     void removeCellFromBlock(int x, int y);
     void moveCellsDown(int rowCleared);
     int numCells();
+    void unsetBlock();
 };
 #endif

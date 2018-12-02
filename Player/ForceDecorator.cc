@@ -80,12 +80,12 @@ char ForceDecorator::getNextBlockChar() {
     return player->getNextBlockChar();
 }
 
-void ForceDecorator::levelUp() {
-    return levelUp();
+void ForceDecorator::levelUp(int times) {
+    return levelUp(times);
 }
 
-void ForceDecorator::levelDown() {
-    return levelDown();
+void ForceDecorator::levelDown(int times) {
+    return levelDown(times);
 }
 
 void ForceDecorator::noRandom(std::string sequencefile) {
@@ -95,3 +95,7 @@ void ForceDecorator::noRandom(std::string sequencefile) {
 void ForceDecorator::random() {
     return random();
 }
+
+void ForceDecorator::replaceBlock(char c) {
+    return player->replaceBlock(c);
+};

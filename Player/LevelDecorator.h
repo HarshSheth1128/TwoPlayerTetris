@@ -27,10 +27,11 @@ class LevelDecorator: public EffectsDecorator{
     void rotate(std::string direction, int times)override;
     int drop(int times) override;
     char getNextBlockChar() override;
-    void levelUp() override;
-    void levelDown() override;
+    void levelUp(int times) override;
+    void levelDown(int times) override;
     void noRandom(std::string sequencefile) override;
     void random() override;
+    void replaceBlock(char c) override;
     //void print() override;
 };
 

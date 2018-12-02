@@ -105,12 +105,12 @@ char LevelDecorator::getNextBlockChar() {
     return player->getNextBlockChar();
 }
 
-void LevelDecorator::levelUp() {
-    return levelUp();
+void LevelDecorator::levelUp(int times) {
+    return levelUp(times);
 }
 
-void LevelDecorator::levelDown() {
-    return levelDown();
+void LevelDecorator::levelDown(int times) {
+    return levelDown(times);
 }
 
 void LevelDecorator::noRandom(std::string sequencefile) {
@@ -120,3 +120,7 @@ void LevelDecorator::noRandom(std::string sequencefile) {
 void LevelDecorator::random() {
     return random();
 }
+
+void LevelDecorator::replaceBlock(char c) {
+    return player->replaceBlock(c);
+};

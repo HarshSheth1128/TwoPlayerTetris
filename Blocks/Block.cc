@@ -207,6 +207,13 @@ int Block::numCells(){
     return blockCells.size();
 }
 
+void Block::unsetBlock(){
+    for(auto i: blockCells){
+        i->isUsed = false;
+        i->setType(' ');
+    }   
+}
+
 
 
 

@@ -61,8 +61,8 @@ char GamePlayer::getNextBlock() {
   return level->getNextBlock();
 }
 
-void GamePlayer::setNextBlock() {
-  switch (nextBlock)
+void GamePlayer::getBlock(char blockChar){
+  switch (blockChar)
   {
     case 'S':
       currBlock = new SBlock(grid);
@@ -86,6 +86,10 @@ void GamePlayer::setNextBlock() {
       currBlock = new IBlock(grid);
       break;
   }
+}
+
+void GamePlayer::setNextBlock() {
+  getBlock(nextBlock);
   nextBlock = getNextBlock();
 }
 
@@ -124,58 +128,62 @@ char GamePlayer::getNextBlockChar(){
   return nextBlock;
 }
 
-void GamePlayer::levelUp(){
-  int levelNum = level->getLevel();
-  if(levelNum != 4){
-    delete level;
-    switch(levelNum){
-      case 0:
-        level = new Level1();
-        break;
-      case 1:
-        level = new Level2();
-        break;
-      case 2:
-        level = new Level3();
-        break;
-      case 3:
-        level = new Level4(grid);
-        break;
+void GamePlayer::levelUp(int times){
+  for(int i = times; i > 0; i--){
+    int levelNum = level->getLevel();
+    if(levelNum != 4){
+      delete level;
+      switch(levelNum){
+        case 0:
+          level = new Level1();
+          break;
+        case 1:
+          level = new Level2();
+          break;
+        case 2:
+          level = new Level3();
+          break;
+        case 3:
+          level = new Level4(grid);
+          break;
+      }
     }
   }
 }
 
-void GamePlayer::levelDown(){
-  int levelNum = level->getLevel();
-  if(levelNum != 0){
-    delete level;
-    switch(levelNum){
-      case 1:
-        //If differennt sequencefile is defined and player 1
-        #ifdef scriptfile1
-        if(playerId == 1) level = new Level0("scriptfile1");
-        break;
-        #endif
-        //Otherwise just use sequence1.txt
-        if(playerId == 1) level = new Level0("sequence1.txt");
+void GamePlayer::levelDown(int times){
+  for(int i = times; i > 0; i--){
+    int levelNum = level->getLevel();
+    if(levelNum != 0){
+      delete level;
+      switch(levelNum){
+        case 1:
+          //If differennt sequencefile is defined and player 1
+          #ifdef scriptfile1
+          if(playerId == 1) level = new Level0("scriptfile1");
+          break;
+          #endif
+          //Otherwise just use sequence1.txt
+          if(playerId == 1) level = new Level0("sequence1.txt");
 
-        //If different sequencefile is defined and player 2
-        #ifdef scriptfile2
-        if(playerId == 0) level = new Level0("scriptfile2");
-        break;
-        #endif
-        //Otherwise just use sequence2.txt
-        if(playerId == 0) level = new Level0("sequence2.txt");
-        break;
-      case 2:
-        level = new Level1();
-        break;
-      case 3:
-        level = new Level2();
-        break;
-      case 4:
-        level = new Level3();
-        break;
+          //If different sequencefile is defined and player 2
+          #ifdef scriptfile2
+          if(playerId == 0) level = new Level0("scriptfile2");
+          break;
+          #endif
+          //Otherwise just use sequence2.txt
+          if(playerId == 0) level = new Level0("sequence2.txt");
+          break;
+        case 2:
+          level = new Level1();
+          break;
+        case 3:
+          level = new Level2();
+          break;
+        case 4:
+          level = new Level3();
+          break;
+      }
     }
   }
 }
@@ -190,6 +198,12 @@ void GamePlayer::random(){
   if(level->getLevel() == 3 || level->getLevel() == 4){
     level->random();
   }
+}
+
+void GamePlayer::replaceBlock(char c){
+  currBlock->unsetBlock();
+  delete currBlock;
+  getBlock(c);
 }
 
 

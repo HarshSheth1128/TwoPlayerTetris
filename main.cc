@@ -156,7 +156,7 @@ void printPlayers(Player* activePlayer, Player *p1, Player *p2){
     } else {
         std::cout << "Player Two's Turn" << std::endl;
     }
-    std::cout << "Command: ";
+    std::cout << "Command: " << std::endl;
 }
 
 Level* getLevel(int playerId){
@@ -285,9 +285,9 @@ void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &
             activePlayer = p1;
         }
     } else if (s == "levelup"){
-        activePlayer->levelUp();
+        activePlayer->levelUp(times);
     } else if (s == "leveldown"){
-        activePlayer->levelDown();
+        activePlayer->levelDown(times);
     } else if (s == "norandom"){
         std::string sequencefile;
         std::cin >> sequencefile;
@@ -302,7 +302,7 @@ void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &
     } else if (s == "restart"){
         //TODO
     } else if (s == "I" || s == "J" || s == "L" || s == "S" || s == "Z" || s == "T" || s == "O"){
-        activePlayer->setNextBlockChar(s[0]);
+        activePlayer->replaceBlock(s[0]);
     }
 }
 
