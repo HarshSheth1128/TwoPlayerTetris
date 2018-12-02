@@ -15,6 +15,8 @@ class ForceDecorator: public EffectsDecorator{
     ~ForceDecorator() override;
     Player* getBasePlayer() override;
     std::vector<GridCell>* getRow(int rowNum) override;
+    bool isHeavyLevel() override;
+    void setHeavyLevel(bool isHeavy) override;
     void printRow (int rowNum) override;
     bool getPlayerId() override;
     int getLevel() override;
@@ -26,7 +28,7 @@ class ForceDecorator: public EffectsDecorator{
     void moveRight(int times)override;
     bool moveDown(int times)override;
     void rotate(std::string direction, int times)override;
-    int drop(int times) override;
+    int drop() override;
     char getNextBlockChar() override;
     void levelUp(int times) override;
     void levelDown(int times) override;

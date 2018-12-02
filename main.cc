@@ -26,6 +26,7 @@
 #include <sstream>
 #include <stdlib.h>
 #include <fstream>
+#include <cctype>
 
 void printPlayerBlocks(Player* p1, Player* p2){
 	char p1NextBlock = p1->getNextBlockChar();
@@ -208,13 +209,15 @@ std::vector<std::string> initVector(){
 }
 
 int getNumTimes(std::string &s){
-    std::stringstream ss{s.substr(0,1)};
     int numTimes;
-    if(ss>>numTimes){
-        s = s.substr(1);
-        return numTimes;
-    } else {
-        return 1;
+    for (int i = 0; i < s.length(); i++){
+        if (!isdigit(s.[i])){
+            if (i == 0) return 1;
+            std::stringstream ss{s.substr(0,i+1)};
+            s = s.substr(i);
+            ss>>numTimes;
+            return numTimes;
+        }
     }
 }
 
@@ -249,23 +252,32 @@ void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &
         activePlayer->rotate("CCW", times);
     } else if (s == "drop"){
         //If they clear two or more lines, then take input for the other player
-		if(activePlayer->drop(times) >= 2){
-			while(true){
+		if(activePlayer->drop() >= 2){
 				std::string decorator;
 				std::cin >> decorator;
 				if(decorator == "blind"){
-					if(activePlayer->getPlayerId() == 1) {p2 = new BlindDecorator(p2);}
-					else {p1 = new BlindDecorator(p1);}
+					if(activePlayer->getPlayerId() == 1) {
+                        p2 = new BlindDecorator(p2);
+                    } else {
+                        p1 = new BlindDecorator(p1);
+                    }
 				} else if (decorator == "heavy"){
-					if(activePlayer->getPlayerId() == 1) {p2 = new HeavyDecorator(p2);}
-					else {p1 = new HeavyDecorator(p1);}
+					if(activePlayer->getPlayerId() == 1) {
+                        p2 = new HeavyDecorator(p2);
+                    }
+					else {
+                        p1 = new HeavyDecorator(p1);
+                    }
 				} else if (decorator == "force"){
 					char type;
 					std::cin >> type;
-					if(activePlayer->getPlayerId() == 1) {p2 = new ForceDecorator(p2, type);}
-					else {p1 = new ForceDecorator(p1, type);}
+					if(activePlayer->getPlayerId() == 1) {
+                        p2 = new ForceDecorator(p2, type);
+                    }
+					else {
+                        p1 = new ForceDecorator(p1, type);
+                    }
 				}
-			}
 		}
 		
 
@@ -285,7 +297,11 @@ void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &
             activePlayer = p1;
         }
     } else if (s == "levelup"){
+        activePlayer = activePlayer->getBasePlayer();
         activePlayer->levelUp(times);
+        if ((activePlayer->getLevel() == 3) || (activePlayer->getLevel() == 4)){
+            activePlayer = new LevelDecorator(activePlayer);
+        }
     } else if (s == "leveldown"){
         activePlayer->levelDown(times);
     } else if (s == "norandom"){
@@ -332,7 +348,7 @@ int main(){
             int numTimes = getNumTimes(s);
             s = matchCommand(s, commands);
             executeCommand(s,activePlayer, p1, p2, numTimes);
-			printPlayers(activePlayer,p1,p2);
+			printPlayers(activePlayer,p1,p2);-
         } catch(std::exception){
             std::cout << "Game Over!" << std::endl;
             if(activePlayer->getPlayerId() == 0){

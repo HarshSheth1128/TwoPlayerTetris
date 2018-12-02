@@ -17,6 +17,14 @@ Player* HeavyDecorator::getBasePlayer(){
     return tmp;
 }
 
+bool HeavyDecorator::isHeavyLevel(){
+    return player->isHeavyLevel();
+}
+
+void HeavyDecorator::setHeavyLevel(bool isHeavy){
+    player->setHeavyLevel(isHeavy);
+}
+
 std::vector<GridCell>* HeavyDecorator::getRow(int rowNum){
      return player->getRow(rowNum);
 }
@@ -51,7 +59,7 @@ void HeavyDecorator::moveLeft(int times){
     if (player->getPlayerId() == player->isPlayerOnePlaying()){
         for (int i = 0; i < 2; i++){
             if (!player->moveDown(1)){
-                player->drop(1);
+                player->drop();
                 //playerOnePlaying = (!playerOnePlaying);
                 return;
             }
@@ -68,7 +76,7 @@ void HeavyDecorator::moveRight(int times){
         //    std::cout << "at 3." << std::endl;
             if (!player->moveDown(1)){
           //      std::cout << "dropping" << std::endl;
-                player->drop(1);
+                player->drop();
                 //playerOnePlaying = (!playerOnePlaying); //this should happen in GamePlayer::drop
                 return;
             }
@@ -88,8 +96,8 @@ void HeavyDecorator::rotate(std::string direction, int times){
     player->rotate(direction, times);
 }
 
-int HeavyDecorator::drop(int times){
-    return player->drop(times);
+int HeavyDecorator::drop(){
+    return player->drop();
 }
 
 /*

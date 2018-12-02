@@ -11,6 +11,7 @@ class GamePlayer: public Player{
     void shiftCellsDown(int y);
     void removeEmptyBlocks();
     void getBlock(char blockChar);
+
     public:
     // xWindow *window;
 
@@ -20,6 +21,8 @@ class GamePlayer: public Player{
     bool getPlayerId() override;
     Player* getBasePlayer() override;
     std::vector<GridCell>* getRow(int rowNum) override;
+    bool isHeavyLevel() override;
+    void setHeavyLevel(bool isHeavy) override;
     void printRow (int rowNum) override;
     int getLevel() override;
     int getScore() override;
@@ -33,7 +36,7 @@ class GamePlayer: public Player{
     void rotate(std::string direction, int times) override;
     void levelUp(int times) override;
     void levelDown(int times) override;
-    int drop(int times) override;
+    int drop() override;
     void noRandom(std::string sequencefile) override;
     void random() override;
     void replaceBlock(char c) override;

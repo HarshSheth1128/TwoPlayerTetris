@@ -38,6 +38,14 @@ std::vector<GridCell>* BlindDecorator::getRow(int rowNum){
     return player->getRow(rowNum);
 }
 
+bool BlindDecorator::isHeavyLevel(){
+    return player->isHeavyLevel();
+}
+
+void BlindDecorator::setHeavyLevel(bool isHeavy){
+    player->setHeavyLevel(isHeavy);
+}
+
 void BlindDecorator::printRow (int rowNum) {
     std::vector<GridCell> gridRow = *(player->getRow(rowNum));
     for (int i = 0; i < player->getGridWidth(); i++){
@@ -90,8 +98,8 @@ void BlindDecorator::rotate(std::string direction, int times){
     player->rotate(direction, times);
 }
 
-int BlindDecorator::drop(int times){
-    return player->drop(times);
+int BlindDecorator::drop(){
+    return player->drop();
 }
 
 /*

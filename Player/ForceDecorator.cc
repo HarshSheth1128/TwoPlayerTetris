@@ -21,6 +21,14 @@ std::vector<GridCell>* ForceDecorator::getRow(int rowNum){
     return player->getRow(rowNum);
 }
 
+bool ForceDecorator::isHeavyLevel(){
+    return player->isHeavyLevel();
+}
+
+void ForceDecorator::setHeavyLevel(bool isHeavy){
+    player->setHeavyLevel(isHeavy);
+}
+
 void ForceDecorator::printRow (int rowNum) {
     player->printRow(rowNum);
 }
@@ -66,8 +74,8 @@ void ForceDecorator::rotate(std::string direction, int times){
     player->rotate(direction, times);
 }
 
-int ForceDecorator::drop(int times){
-    return player->drop(times);
+int ForceDecorator::drop(){
+    return player->drop();
 }
 
 /*

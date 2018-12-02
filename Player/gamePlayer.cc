@@ -19,7 +19,11 @@
 
 //GamePlayer::GamePlayer(xWindow &w){}
 GamePlayer::GamePlayer(Grid* grid, Level *level, bool id):Player(grid, level, id){
-    nextBlock = getNextBlock();
+  if ((level->getLevel() == 3) or (level->getLevel() == 4)){
+      heavyLevel = true;
+  }
+  else heavyLevel = false;
+  nextBlock = getNextBlock();
 }
 //GamePlayer::GamePlayer(Grid* grid, Level *level, bool id):grid{grid}, level{level}, playerId{id}{}
 
@@ -30,16 +34,23 @@ GamePlayer::~GamePlayer(){
 }
 
 bool GamePlayer::getPlayerId(){
-    return this->playerId;
+  return this->playerId;
 }
 
 Player* GamePlayer::getBasePlayer() {
   return this;
 }
 
-
 std::vector<GridCell>* GamePlayer::getRow(int rowNum){
   return grid->getRow(rowNum);
+}
+
+bool GamePlayer::isHeavyLevel(){
+  return heavyLevel;
+}
+
+void GamePlayer::setHeavyLevel(bool isHeavy){
+  heavyLevel = isHeavy;
 }
 
 void GamePlayer::printRow (int rowNum) {
@@ -97,19 +108,38 @@ void GamePlayer::moveLeft(int times) {
   for(int i = times; i > 0; i--){
     currBlock->moveLeft();
   }
+  if (heavyLevel){
+    if (!this->moveDown(0)){
+    //player->drop();
+    }
+  }
 }
 
 void GamePlayer::moveRight(int times) {
   for(int i = times; i > 0; i--){
     currBlock->moveRight();
   }
+  if (heavyLevel){
+    if (!this->moveDown(0)){
+      //this->drop();
+    }
+  }
 }
 
 bool GamePlayer::moveDown(int times) {
   for(int i = times; i > 0; i--){
     if(currBlock->moveDown() == false){
+      if (heavyLevel){
+        this->drop();
+      }
       return false;
-    };
+    }
+  }
+  if (heavyLevel){
+    if (!currBlock->moveDown()){
+      this->drop();
+      return false;
+    }
   }
   return true;
 }
@@ -117,6 +147,11 @@ bool GamePlayer::moveDown(int times) {
 void GamePlayer::rotate(std::string direction, int times){
   for(int i = times; i > 0; i--){
     currBlock->rotate(direction);
+  }
+  if (heavyLevel){
+    if (!this->moveDown(1)){
+      //this->drop();
+    }
   }
 }
 
@@ -243,7 +278,6 @@ void GamePlayer::shiftCellsDown(int rowCleared){
   for(auto i : blocksOnBoard){
     i->moveCellsDown(rowCleared);
   }
-  
 }
 
 //If the block is empty (i.e has no cells) delete it
@@ -256,7 +290,7 @@ void GamePlayer::removeEmptyBlocks(){
   }
 }
 
-int GamePlayer::drop(int times) {
+int GamePlayer::drop() {
   while(currBlock->moveDown());
   blocksOnBoard.emplace_back(currBlock);
   int numRowsCleared = 0;
