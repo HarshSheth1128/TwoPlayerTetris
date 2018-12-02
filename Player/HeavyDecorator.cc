@@ -109,3 +109,7 @@ void HeavyDecorator::noRandom(std::string sequencefile) {
 void HeavyDecorator::random() {
     return random();
 }
+
+void HeavyDecorator::replaceBlock(char c) {
+    return player->replaceBlock(c);
+};

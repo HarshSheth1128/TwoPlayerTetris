@@ -112,3 +112,7 @@ void LevelDecorator::noRandom(std::string sequencefile) {
 void LevelDecorator::random() {
     return random();
 }
+
+void LevelDecorator::replaceBlock(char c) {
+    return player->replaceBlock(c);
+};

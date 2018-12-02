@@ -56,8 +56,8 @@ char GamePlayer::getNextBlock() {
   return level->getNextBlock();
 }
 
-void GamePlayer::setNextBlock() {
-  switch (nextBlock)
+void GamePlayer::getBlock(char blockChar){
+  switch (blockChar)
   {
     case 'S':
       currBlock = new SBlock(grid);
@@ -81,6 +81,10 @@ void GamePlayer::setNextBlock() {
       currBlock = new IBlock(grid);
       break;
   }
+}
+
+void GamePlayer::setNextBlock() {
+  getBlock(nextBlock);
   nextBlock = getNextBlock();
 }
 
@@ -189,6 +193,12 @@ void GamePlayer::random(){
   if(level->getLevel() == 3 || level->getLevel() == 4){
     level->random();
   }
+}
+
+void GamePlayer::replaceBlock(char c){
+  currBlock->unsetBlock();
+  delete currBlock;
+  getBlock(c);
 }
 
 

@@ -87,3 +87,7 @@ void ForceDecorator::noRandom(std::string sequencefile) {
 void ForceDecorator::random() {
     return random();
 }
+
+void ForceDecorator::replaceBlock(char c) {
+    return player->replaceBlock(c);
+};

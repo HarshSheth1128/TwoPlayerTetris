@@ -10,6 +10,7 @@ class GamePlayer: public Player{
     std::vector<Block*> blocksOnBoard;
     void shiftCellsDown(int y);
     void removeEmptyBlocks();
+    void getBlock(char blockChar);
     public:
     // xWindow *window;
 
@@ -35,5 +36,6 @@ class GamePlayer: public Player{
     int drop(int times) override;
     void noRandom(std::string sequencefile) override;
     void random() override;
+    void replaceBlock(char c) override;
 };
 #endif

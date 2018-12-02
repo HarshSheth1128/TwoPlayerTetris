@@ -30,6 +30,7 @@ class HeavyDecorator: public EffectsDecorator{
     void levelDown(int times) override;
     void noRandom(std::string sequencefile) override;
     void random() override;
+    void replaceBlock(char c) override;
     //void print() override;
 };
 

@@ -111,3 +111,7 @@ void BlindDecorator::noRandom(std::string sequencefile) {
 void BlindDecorator::random() {
     return random();
 }
+
+void BlindDecorator::replaceBlock(char c){
+    return player->replaceBlock(c);
+};
