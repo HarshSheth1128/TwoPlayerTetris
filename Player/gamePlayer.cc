@@ -60,25 +60,25 @@ void GamePlayer::getBlock(char blockChar){
   switch (blockChar)
   {
     case 'S':
-      currBlock = new SBlock(grid);
+      currBlock = new SBlock(grid, level->getLevel());
       break;
     case 'Z':
-      currBlock = new ZBlock(grid);
+      currBlock = new ZBlock(grid, level->getLevel());
       break;
     case 'T':
-      currBlock = new TBlock(grid);
+      currBlock = new TBlock(grid, level->getLevel());
       break;
     case 'L':
-      currBlock = new LBlock(grid);
+      currBlock = new LBlock(grid, level->getLevel());
       break;
     case 'J':
-      currBlock = new JBlock(grid);
+      currBlock = new JBlock(grid, level->getLevel());
       break;
     case 'O':
-      currBlock = new OBlock(grid);
+      currBlock = new OBlock(grid, level->getLevel());
       break;
     case 'I':
-      currBlock = new IBlock(grid);
+      currBlock = new IBlock(grid, level->getLevel());
       break;
   }
 }
@@ -246,6 +246,7 @@ void GamePlayer::removeEmptyBlocks(){
   for(int i = 0; i < blocksOnBoard.size(); i++){
     if(blocksOnBoard.at(i)->numCells() == 0){
       blocksOnBoard.erase(blocksOnBoard.begin() + i);
+      score += (blocksOnBoard.at(i)->getGeneratedLevel() + 1) * (blocksOnBoard.at(i)->getGeneratedLevel() + 1);
       i--;
     }
   }

@@ -1,7 +1,7 @@
 #include "Block.h"
 #include <algorithm>
 
-Block::Block(Grid* g, char c):grid(g),type(c){}
+Block::Block(Grid* g, char c, int generatedLevel):grid(g),type(c),generatedLevel(generatedLevel){}
 
 Block::~Block(){}
 
@@ -214,6 +214,8 @@ void Block::unsetBlock(){
     }   
 }
 
-
+int Block::getGeneratedLevel(){
+    return generatedLevel;
+}
 
 
