@@ -236,7 +236,7 @@ std::string matchCommand(std::string input, std::vector<std::string> commands){
 }
 
 //Execute the command given
-void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &p2, int times = 1){
+void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &p2, std::vector<std::string> commands, int times = 1){
     if(s == "left"){
         activePlayer->moveLeft(times);
     } else if (s == "right"){
@@ -268,7 +268,7 @@ void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &
 			}
 		}
 		
-
+		//Print before setting the nextBlock as game could be over
 		printPlayers(activePlayer,p1,p2);
 
         //Undecorate the player
@@ -278,7 +278,6 @@ void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &
         activePlayer->setNextBlock();
 
         //Change player that is in control as turn is over when drop
-
         if(activePlayer->getPlayerId() == 1){
             activePlayer = p2;
         } else {
@@ -296,9 +295,14 @@ void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &
         std::string sequencefile;
         std::cin >> sequencefile;
 		std::ifstream inputFile{sequencefile};
-        /*while(){
-			std::string command
-		}*/
+		std::cout << sequencefile << std::endl;
+        while(!inputFile.fail()){
+			std::string command;
+			getline(inputFile,command);
+			int numTimes = getNumTimes(command);
+            command = matchCommand(command, commands);
+            executeCommand(command,activePlayer, p1, p2, commands, numTimes);
+		}
     } else if (s == "restart"){
         //TODO
     } else if (s == "I" || s == "J" || s == "L" || s == "S" || s == "Z" || s == "T" || s == "O"){
@@ -331,7 +335,7 @@ int main(){
             std::cin >> s;
             int numTimes = getNumTimes(s);
             s = matchCommand(s, commands);
-            executeCommand(s,activePlayer, p1, p2, numTimes);
+            executeCommand(s,activePlayer, p1, p2, commands, numTimes);
 			printPlayers(activePlayer,p1,p2);
         } catch(std::exception){
             std::cout << "Game Over!" << std::endl;
