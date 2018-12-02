@@ -211,7 +211,7 @@ std::vector<std::string> initVector(){
 int getNumTimes(std::string &s){
     int numTimes;
     for (int i = 0; i < s.length(); i++){
-        if (!isdigit(s.[i])){
+        if (!isdigit(s[i])){
             if (i == 0) return 1;
             std::stringstream ss{s.substr(0,i+1)};
             s = s.substr(i);
@@ -238,50 +238,81 @@ std::string matchCommand(std::string input, std::vector<std::string> commands){
     return "Please be more specific"; 
 }
 
+void changeTurn( Player* &activePlayer, Player* &p1, Player* &p2){
+    activePlayer->setNextBlock();
+    //undecorate the player:
+    activePlayer = activePlayer->getBasePlayer();
+    if(activePlayer->getPlayerId() == 1){
+        activePlayer = p2;
+    } else {
+        activePlayer = p1;
+    }
+}
+
 //Execute the command given
 void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &p2, int times = 1){
     if(s == "left"){
         activePlayer->moveLeft(times);
+        if (activePlayer->isPlayerOnePlaying() != activePlayer->getPlayerId()){
+            changeTurn(activePlayer, p1, p2);  
+        }
     } else if (s == "right"){
         activePlayer->moveRight(times);
+        if (activePlayer->isPlayerOnePlaying() != activePlayer->getPlayerId()){
+            changeTurn(activePlayer, p1, p2);  
+        }
     } else if (s == "down"){
         activePlayer->moveDown(times);
+        if (activePlayer->isPlayerOnePlaying() != activePlayer->getPlayerId()){
+            changeTurn(activePlayer, p1, p2);  
+        }
     } else if (s == "clockwise"){
         activePlayer->rotate("CW", times);
+        if (activePlayer->isPlayerOnePlaying() != activePlayer->getPlayerId()){
+            changeTurn(activePlayer, p1, p2);  
+        }
     } else if (s == "counterclockwise"){
         activePlayer->rotate("CCW", times);
+        if (activePlayer->isPlayerOnePlaying() != activePlayer->getPlayerId()){
+            changeTurn(activePlayer, p1, p2);  
+        }
     } else if (s == "drop"){
+
         //If they clear two or more lines, then take input for the other player
 		if(activePlayer->drop() >= 2){
-				std::string decorator;
-				std::cin >> decorator;
-				if(decorator == "blind"){
-					if(activePlayer->getPlayerId() == 1) {
-                        p2 = new BlindDecorator(p2);
-                    } else {
-                        p1 = new BlindDecorator(p1);
-                    }
-				} else if (decorator == "heavy"){
-					if(activePlayer->getPlayerId() == 1) {
-                        p2 = new HeavyDecorator(p2);
-                    }
-					else {
-                        p1 = new HeavyDecorator(p1);
-                    }
-				} else if (decorator == "force"){
-					char type;
-					std::cin >> type;
-					if(activePlayer->getPlayerId() == 1) {
-                        p2 = new ForceDecorator(p2, type);
-                    }
-					else {
-                        p1 = new ForceDecorator(p1, type);
-                    }
-				}
+			std::string decorator;
+			std::cin >> decorator;
+			if(decorator == "blind"){
+				if(activePlayer->getPlayerId() == 1) {
+                    p2 = new BlindDecorator(p2);
+                } else {
+                    p1 = new BlindDecorator(p1);
+                }
+			} else if (decorator == "heavy"){
+				if(activePlayer->getPlayerId() == 1) {
+                    p2 = new HeavyDecorator(p2);
+                }
+			    else {
+                    p1 = new HeavyDecorator(p1);
+                }
+			} else if (decorator == "force"){
+			    char type;
+				std::cin >> type;
+				if(activePlayer->getPlayerId() == 1) {
+                    p2 = new ForceDecorator(p2, type);
+                }
+                else {
+                    p1 = new ForceDecorator(p1, type);
+                }
+			}
 		}
-		
+		/*
+        //Undecorate the player
+        activePlayer = activePlayer->getBasePlayer();
 
-		printPlayers(activePlayer,p1,p2);
+		//why do we need this print. I think its goood to
+        //shift the turn when showing final state of active player
+        //printPlayers(activePlayer,p1,p2);
 
         //Undecorate the player
         //TODO
@@ -296,11 +327,12 @@ void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &
         } else {
             activePlayer = p1;
         }
+        */
+        changeTurn(activePlayer, p1, p2); 
     } else if (s == "levelup"){
-        activePlayer = activePlayer->getBasePlayer();
         activePlayer->levelUp(times);
         if ((activePlayer->getLevel() == 3) || (activePlayer->getLevel() == 4)){
-            activePlayer = new LevelDecorator(activePlayer);
+            //// TODO
         }
     } else if (s == "leveldown"){
         activePlayer->levelDown(times);
@@ -348,7 +380,7 @@ int main(){
             int numTimes = getNumTimes(s);
             s = matchCommand(s, commands);
             executeCommand(s,activePlayer, p1, p2, numTimes);
-			printPlayers(activePlayer,p1,p2);-
+			printPlayers(activePlayer,p1,p2);
         } catch(std::exception){
             std::cout << "Game Over!" << std::endl;
             if(activePlayer->getPlayerId() == 0){
