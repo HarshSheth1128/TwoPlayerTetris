@@ -167,26 +167,26 @@ char GamePlayer::getNextBlockChar(){
   return nextBlock;
 }
 
-void GamePlayer::levelUp(int times){
+void GamePlayer::levelUp(int times, int seed){
   for(int i = times; i > 0; i--){
     int levelNum = level->getLevel();
     if(levelNum != 4){
       delete level;
       switch(levelNum){
         case 0:
-          level = new Level1();
+          level = new Level1(seed);
           heavyLevel = false;
           break;
         case 1:
-          level = new Level2();
+          level = new Level2(seed);
           heavyLevel = false;
           break;
         case 2:
-          level = new Level3();
+          level = new Level3(seed);
           heavyLevel = true;
           break;
         case 3:
-          level = new Level4(grid);
+          level = new Level4(grid, seed);
           heavyLevel = true;
           break;
       }
@@ -194,7 +194,7 @@ void GamePlayer::levelUp(int times){
   }
 }
 
-void GamePlayer::levelDown(int times, std::string scriptfile1, std::string scriptfile2){
+void GamePlayer::levelDown(int times, std::string scriptfile1, std::string scriptfile2, int seed){
   for(int i = times; i > 0; i--){
     int levelNum = level->getLevel();
     if(levelNum != 0){
@@ -206,15 +206,15 @@ void GamePlayer::levelDown(int times, std::string scriptfile1, std::string scrip
           heavyLevel = false;
           break;
         case 2:
-          level = new Level1();
+          level = new Level1(seed);
           heavyLevel = false;
           break;
         case 3:
-          level = new Level2();
+          level = new Level2(seed);
           heavyLevel = false;
           break;
         case 4:
-          level = new Level3();
+          level = new Level3(seed);
            heavyLevel = true;
           break;
       }
