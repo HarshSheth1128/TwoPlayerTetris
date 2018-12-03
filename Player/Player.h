@@ -46,8 +46,6 @@ class Player{
     virtual void noRandom(std::string sequencefile) = 0;
     virtual void random() = 0;
     virtual void replaceBlock(char c) = 0;
-    //virtual void print() = 0;
-    //virtual void addBlockOnBoard(Block *b) = 0;
 };
 
 #endif

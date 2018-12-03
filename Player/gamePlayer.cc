@@ -110,7 +110,6 @@ void GamePlayer::moveLeft(int times) {
   }
   if (heavyLevel){
     if (!this->moveDown(0)){
-    //player->drop();
     }
   }
 }
@@ -121,7 +120,6 @@ void GamePlayer::moveRight(int times) {
   }
   if (heavyLevel){
     if (!this->moveDown(0)){
-      //this->drop();
     }
   }
 }
@@ -150,7 +148,6 @@ void GamePlayer::rotate(std::string direction, int times){
   }
   if (heavyLevel){
     if (!this->moveDown(1)){
-      //this->drop();
     }
   }
 }

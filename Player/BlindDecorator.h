@@ -34,7 +34,6 @@ class BlindDecorator: public EffectsDecorator{
     void noRandom(std::string sequencefile) override;
     void random() override;
     void replaceBlock(char c) override;
-    //void print() override;
 };
 
 

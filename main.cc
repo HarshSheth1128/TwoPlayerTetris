@@ -152,7 +152,6 @@ void printPlayers(Player* activePlayer, Player *p1, Player *p2, int highScore){
 		else std::cout << "╣" << std::endl;
     }
     std::cout << "╚═══════════╝\t\t╚═══════════╝" << std::endl;
-	//std::cout << std::endl;
 	std::cout << "╔═══════════╗\t\t╔═══════════╗" << std::endl;
     std::cout << "║ Next:     ║\t\t║ Next:     ║" << std::endl;
 	printPlayerBlocks(p1,p2);
@@ -235,7 +234,6 @@ std::string matchCommand(std::string input, std::vector<std::string> commands){
     std::string command;
     for(auto i : commands){
         if(std::regex_match(i,std::regex("^" + input + "(.*)"))){
-            //std::cout << i << std::endl;
             numMatches++;
             command = i;
         }
@@ -248,8 +246,6 @@ std::string matchCommand(std::string input, std::vector<std::string> commands){
 
 void changeTurn( Player* &activePlayer, Player* &p1, Player* &p2){
     activePlayer->setNextBlock();
-    //undecorate the player:
-    //activePlayer = activePlayer->getBasePlayer();
     if(activePlayer->getPlayerId() == 1){
 		p1 = p1->getBasePlayer();
         activePlayer = p2;
@@ -317,27 +313,6 @@ void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &
                 }
 			}
 		}
-		/*
-        //Undecorate the player
-        activePlayer = activePlayer->getBasePlayer();
-
-		//why do we need this print. I think its goood to
-        //shift the turn when showing final state of active player
-        //printPlayers(activePlayer,p1,p2);
-
-        //Undecorate the player
-        //TODO
-
-        //Set next block on the board
-        activePlayer->setNextBlock();
-
-        //Change player that is in control as turn is over when drop
-        if(activePlayer->getPlayerId() == 1){
-            activePlayer = p2;
-        } else {
-            activePlayer = p1;
-        }
-        */
         changeTurn(activePlayer, p1, p2); 
     } else if (s == "levelup"){
         activePlayer->levelUp(times);

@@ -60,7 +60,6 @@ void HeavyDecorator::moveLeft(int times){
         for (int i = 0; i < 2; i++){
             if (!player->moveDown(1)){
                 player->drop();
-                //playerOnePlaying = (!playerOnePlaying);
                 return;
             }
         }
@@ -69,15 +68,10 @@ void HeavyDecorator::moveLeft(int times){
 
 void HeavyDecorator::moveRight(int times){
     player->moveRight(times);
-    //std::cout << "at 1." << std::endl;
     if (player->getPlayerId() == player->isPlayerOnePlaying()){
-      //  std::cout << "at 2." << std::endl;
         for (int i = 0; i < 2; i++){
-        //    std::cout << "at 3." << std::endl;
             if (!player->moveDown(1)){
-          //      std::cout << "dropping" << std::endl;
                 player->drop();
-                //playerOnePlaying = (!playerOnePlaying); //this should happen in GamePlayer::drop
                 return;
             }
         }
@@ -99,12 +93,6 @@ void HeavyDecorator::rotate(std::string direction, int times){
 int HeavyDecorator::drop(){
     return player->drop();
 }
-
-/*
-void HeavyDecorator::print(){
-    player->print();
-}
-*/
 
 char HeavyDecorator::getNextBlockChar() {
     return player->getNextBlockChar();
