@@ -35,6 +35,9 @@ GamePlayer::~GamePlayer(){
   //delete grid;
   //delete level;
   delete currBlock;
+  for(auto i:blocksOnBoard){
+    delete i;
+  }
 }
 
 bool GamePlayer::getPlayerId(){
