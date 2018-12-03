@@ -332,7 +332,37 @@ void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &
 
 
 
-int main(){    
+int main(int argc, const char* argv[]){
+	//Get the game flags
+	bool onlyText = false;
+	std::string sequencefile1 = "sequence1.txt";
+	std::string sequencefile2 = "sequence2.txt";
+	int numLevel = 0;
+	int seed = 0;
+	for(int i = 0; i < argc; i++){
+		if(std::string(argv[i]) == "-text"){
+			onlyText = true;
+		}
+		if(std::string(argv[i]) == "-scriptfile1"){
+			sequencefile1 = argv[i+1];
+		}
+		if(std::string(argv[i]) == "-scriptfile2"){
+			sequencefile2 = argv[i+1];
+		}
+		if(std::string(argv[i]) == "-startlevel"){
+			std::stringstream s{argv[i+1]};
+			s >> numLevel;
+		}
+		if(std::string(argv[i]) == "-seed"){
+			std::stringstream s{argv[i+1]};
+			s >> seed;
+		}
+	}   
+	std::cout << sequencefile1 << std::endl; 
+	std::cout << sequencefile2 << std::endl; 
+	std::cout << onlyText << std::endl; 
+	std::cout << numLevel << std::endl; 
+	std::cout << seed << std::endl; 
     //Initialize Game
 	int highScore = 0;
 	while(!(std::cin.eof() || std::cin.fail())){
