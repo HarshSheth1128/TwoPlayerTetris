@@ -109,8 +109,8 @@ void LevelDecorator::levelUp(int times) {
     return levelUp(times);
 }
 
-void LevelDecorator::levelDown(int times) {
-    return levelDown(times);
+void LevelDecorator::levelDown(int times, std::string scriptfile1, std::string scriptfile2) {
+    return levelDown(times, scriptfile1,scriptfile2);
 }
 
 void LevelDecorator::noRandom(std::string sequencefile) {
