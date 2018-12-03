@@ -27,9 +27,6 @@
 #include <fstream>
 #include <cctype>
 
-#define STRINGIZE(x) #x
-#define STRINGIZE_VALUE_OF(x) STRINGIZE(x)
-
 void printPlayerBlocks(Player* p1, Player* p2){
 	char p1NextBlock = p1->getNextBlockChar();
 	char p2NextBlock = p2->getNextBlockChar();
