@@ -358,11 +358,6 @@ int main(int argc, const char* argv[]){
 			s >> seed;
 		}
 	}   
-	std::cout << sequencefile1 << std::endl; 
-	std::cout << sequencefile2 << std::endl; 
-	std::cout << onlyText << std::endl; 
-	std::cout << numLevel << std::endl; 
-	std::cout << seed << std::endl; 
     //Initialize Game
 	int highScore = 0;
 	while(!(std::cin.eof() || std::cin.fail())){
@@ -414,10 +409,6 @@ int main(int argc, const char* argv[]){
 		p1->setPlayerOneActive();
 		delete p1;
 		delete p2;
-		delete g1;
-		delete g2;
-		delete p1Level;
-		delete p2Level;
 	}
 }
 
