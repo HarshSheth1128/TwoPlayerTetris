@@ -76,25 +76,25 @@ void GamePlayer::getBlock(char blockChar){
   switch (blockChar)
   {
     case 'S':
-      currBlock = new SBlock(grid);
+      currBlock = new SBlock(grid, level->getLevel());
       break;
     case 'Z':
-      currBlock = new ZBlock(grid);
+      currBlock = new ZBlock(grid, level->getLevel());
       break;
     case 'T':
-      currBlock = new TBlock(grid);
+      currBlock = new TBlock(grid, level->getLevel());
       break;
     case 'L':
-      currBlock = new LBlock(grid);
+      currBlock = new LBlock(grid, level->getLevel());
       break;
     case 'J':
-      currBlock = new JBlock(grid);
+      currBlock = new JBlock(grid, level->getLevel());
       break;
     case 'O':
-      currBlock = new OBlock(grid);
+      currBlock = new OBlock(grid, level->getLevel());
       break;
     case 'I':
-      currBlock = new IBlock(grid);
+      currBlock = new IBlock(grid, level->getLevel());
       break;
   }
 }
@@ -171,15 +171,19 @@ void GamePlayer::levelUp(int times){
       switch(levelNum){
         case 0:
           level = new Level1();
+          heavyLevel = false;
           break;
         case 1:
           level = new Level2();
+          heavyLevel = false;
           break;
         case 2:
           level = new Level3();
+          heavyLevel = true;
           break;
         case 3:
           level = new Level4(grid);
+          heavyLevel = true;
           break;
       }
     }
@@ -193,30 +197,37 @@ void GamePlayer::levelDown(int times){
       delete level;
       switch(levelNum){
         case 1:
-          //If differennt sequencefile is defined and player 1
+          //If different sequencefile is defined and player 1
           #ifdef scriptfile1
           if(playerId == 1) level = new Level0("scriptfile1");
+          heavyLevel = false;
           break;
           #endif
           //Otherwise just use sequence1.txt
           if(playerId == 1) level = new Level0("sequence1.txt");
+           heavyLevel = false;
 
           //If different sequencefile is defined and player 2
           #ifdef scriptfile2
           if(playerId == 0) level = new Level0("scriptfile2");
+          heavyLevel = false; = false;
           break;
           #endif
           //Otherwise just use sequence2.txt
           if(playerId == 0) level = new Level0("sequence2.txt");
+          heavyLevel = false;
           break;
         case 2:
           level = new Level1();
+          heavyLevel = false;
           break;
         case 3:
           level = new Level2();
+          heavyLevel = false;
           break;
         case 4:
           level = new Level3();
+           heavyLevel = true;
           break;
       }
     }
@@ -285,6 +296,7 @@ void GamePlayer::removeEmptyBlocks(){
   for(int i = 0; i < blocksOnBoard.size(); i++){
     if(blocksOnBoard.at(i)->numCells() == 0){
       blocksOnBoard.erase(blocksOnBoard.begin() + i);
+      score += (blocksOnBoard.at(i)->getGeneratedLevel() + 1) * (blocksOnBoard.at(i)->getGeneratedLevel() + 1);
       i--;
     }
   }

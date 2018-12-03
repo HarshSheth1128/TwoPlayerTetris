@@ -9,7 +9,7 @@
 
 class SBlock : public Block {
     public:
-    SBlock(Grid* g);
+    SBlock(Grid* g, int generatedLevel);
     ~SBlock();
 };
 #endif

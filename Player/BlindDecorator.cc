@@ -113,19 +113,19 @@ char BlindDecorator::getNextBlockChar() {
 }
 
 void BlindDecorator::levelUp(int times) {
-    return levelUp(times);
+    return player->levelUp(times);
 }
 
 void BlindDecorator::levelDown(int times) {
-    return levelDown(times);
+    return player->levelDown(times);
 }
 
 void BlindDecorator::noRandom(std::string sequencefile) {
-    return noRandom(sequencefile);
+    return player->noRandom(sequencefile);
 }
 
 void BlindDecorator::random() {
-    return random();
+    return player->random();
 }
 
 void BlindDecorator::replaceBlock(char c){

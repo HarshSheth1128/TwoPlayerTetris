@@ -30,6 +30,7 @@ void ForceDecorator::setHeavyLevel(bool isHeavy){
 }
 
 void ForceDecorator::printRow (int rowNum) {
+    player->replaceBlock(blockType);
     player->printRow(rowNum);
 }
 
@@ -54,7 +55,7 @@ char ForceDecorator::getNextBlock(){
 }
 
 void ForceDecorator::setNextBlock(){
-    player->setNextBlockChar(this->blockType);
+    //player->setNextBlockChar(this->blockType);
     player->setNextBlock();
 }
 
@@ -89,19 +90,19 @@ char ForceDecorator::getNextBlockChar() {
 }
 
 void ForceDecorator::levelUp(int times) {
-    return levelUp(times);
+    player->levelUp(times);
 }
 
 void ForceDecorator::levelDown(int times) {
-    return levelDown(times);
+    player->levelDown(times);
 }
 
 void ForceDecorator::noRandom(std::string sequencefile) {
-    return noRandom(sequencefile);
+    player->noRandom(sequencefile);
 }
 
 void ForceDecorator::random() {
-    return random();
+    player->random();
 }
 
 void ForceDecorator::replaceBlock(char c) {

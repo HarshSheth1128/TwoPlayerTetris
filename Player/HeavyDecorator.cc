@@ -111,19 +111,19 @@ char HeavyDecorator::getNextBlockChar() {
 }
 
 void HeavyDecorator::levelUp(int times) {
-    return levelUp(times);
+    return player->levelUp(times);
 }
 
 void HeavyDecorator::levelDown(int times) {
-    return levelDown(times);
+    return player->levelDown(times);
 }
 
 void HeavyDecorator::noRandom(std::string sequencefile) {
-    return noRandom(sequencefile);
+    return player->noRandom(sequencefile);
 }
 
 void HeavyDecorator::random() {
-    return random();
+    return player->random();
 }
 
 void HeavyDecorator::replaceBlock(char c) {

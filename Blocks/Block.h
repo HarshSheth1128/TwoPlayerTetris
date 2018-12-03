@@ -16,9 +16,10 @@ class Block {
     protected:
     std::vector<GridCell*> blockCells;
     Grid *grid;
+    int generatedLevel;
 
     public:
-    Block(Grid* g, char type);
+    Block(Grid* g, char type, int generatedLevel);
     virtual ~Block() = 0;
     void setUpBlock();
     bool moveLeft();  
@@ -27,6 +28,7 @@ class Block {
     bool rotate(std::string direction);
     void removeCellFromBlock(int x, int y);
     void moveCellsDown(int rowCleared);
+    int getGeneratedLevel();
     int numCells();
     void unsetBlock();
 };
