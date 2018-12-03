@@ -260,33 +260,16 @@ void changeTurn( Player* &activePlayer, Player* &p1, Player* &p2){
 
 //Execute the command given
 void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &p2, std::vector<std::string> commands, int highScore, int times = 1){
-    if(s == "left"){
-        activePlayer->moveLeft(times);
-        if (activePlayer->isPlayerOnePlaying() != activePlayer->getPlayerId()){
+    if ((s == "left") or (s == "right") or (s == "down") or (s == "clockwise") or (s == "counterclockwise")){
+		if(s == "left") activePlayer->moveLeft(times);
+		else if (s == "right") activePlayer->moveRight(times);
+		else if (s == "down") activePlayer->moveDown(times);
+		else if (s == "clockwise") activePlayer->rotate("CW", times);
+		else if (s == "counterclockwise") activePlayer->rotate("CCW", times);
+		if (activePlayer->isPlayerOnePlaying() != activePlayer->getPlayerId()){
             changeTurn(activePlayer, p1, p2);  
         }
-    } else if (s == "right"){
-        activePlayer->moveRight(times);
-        if (activePlayer->isPlayerOnePlaying() != activePlayer->getPlayerId()){
-            changeTurn(activePlayer, p1, p2);  
-        }
-    } else if (s == "down"){
-        activePlayer->moveDown(times);
-        if (activePlayer->isPlayerOnePlaying() != activePlayer->getPlayerId()){
-            changeTurn(activePlayer, p1, p2);  
-        }
-    } else if (s == "clockwise"){
-        activePlayer->rotate("CW", times);
-        if (activePlayer->isPlayerOnePlaying() != activePlayer->getPlayerId()){
-            changeTurn(activePlayer, p1, p2);  
-        }
-    } else if (s == "counterclockwise"){
-        activePlayer->rotate("CCW", times);
-        if (activePlayer->isPlayerOnePlaying() != activePlayer->getPlayerId()){
-            changeTurn(activePlayer, p1, p2);  
-        }
-    } else if (s == "drop"){
-
+	} else if (s == "drop"){
         //If they clear two or more lines, then take input for the other player
 		if(activePlayer->drop() >= 2){
 			std::string decorator;
