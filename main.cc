@@ -169,28 +169,26 @@ void printPlayers(Player* activePlayer, Player *p1, Player *p2, int highScore){
     std::cout << "Command: " << std::endl;
 }
 
-Level* getLevel(int playerId, Grid *g){
-    #if startlevel == 0
-    if(playerId == 1){
-        #ifdef scriptfile1
-        return new Level0(STRINGIZE_VALUE_OF(scriptfile1));
-        #endif
-        return new Level0("sequence1.txt");
-    } else {
-        #ifdef scriptfile2
-        return new Level0(STRINGIZE_VALUE_OF(scriptfile2));
-        #endif
-        return new Level0("sequence2.txt");
-    }
-    #elif startlevel == 1 
-    return new Level1();
-    #elif startlevel == 2 
-    return new Level2();
-    #elif startlevel == 3 
-    return new Level3();
-    #elif startlevel == 4 
-    return new Level4(g);
-    #endif
+Level* getLevel(int playerId, Grid *g, int startlevel, std::string scriptfile1, std::string scriptfile2){
+	switch(startlevel){
+		case 0:
+			if(playerId == 1) return new Level0(scriptfile1);
+			else return new Level0(scriptfile2);
+			break;
+		case 1:
+			return new Level1();
+			break;
+		case 2:
+			return new Level2();
+			break;
+		case 3:
+			return new Level3();
+			break;
+		case 4:
+			return new Level4(g);
+			break;
+	}
+	return nullptr;
 }
 
 //Make a vector of supported commands
@@ -260,7 +258,8 @@ void changeTurn( Player* &activePlayer, Player* &p1, Player* &p2){
 }
 
 //Execute the command given
-void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &p2, std::vector<std::string> commands, int highScore, int times = 1){
+void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &p2, std::vector<std::string> commands, int highScore,
+					std::string scriptfile1, std::string scriptfile2, int times = 1){
     if(s == "left"){
         activePlayer->moveLeft(times);
         if (activePlayer->isPlayerOnePlaying() != activePlayer->getPlayerId()){
@@ -321,7 +320,7 @@ void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &
     } else if (s == "levelup"){
         activePlayer->levelUp(times);
     } else if (s == "leveldown"){
-        activePlayer->levelDown(times);
+        activePlayer->levelDown(times,scriptfile1,scriptfile2);
     } else if (s == "norandom"){
         std::string sequencefile;
         std::cin >> sequencefile;
@@ -338,7 +337,7 @@ void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &
 			getline(inputFile,command);
 			int numTimes = getNumTimes(command);
             command = matchCommand(command, commands);
-            executeCommand(command,activePlayer, p1, p2, commands, highScore, numTimes);
+            executeCommand(command,activePlayer, p1, p2, commands, highScore, scriptfile1, scriptfile2, numTimes);
 		}
     } else if (s == "restart"){
         throw std::string("restart");
@@ -386,8 +385,8 @@ int main(int argc, const char* argv[]){
 		std::vector<std::string> commands = initVector();
 		Grid *g1 = new Grid();
 		Grid *g2 = new Grid();
-		Level *p1Level = getLevel(1,g1);
-		Level *p2Level = getLevel(0,g2);
+		Level *p1Level = getLevel(1,g1,numLevel, sequencefile1, sequencefile1);
+		Level *p2Level = getLevel(0,g2, numLevel, sequencefile1, sequencefile2);
 		Player *p1 = new GamePlayer(g1,p1Level, 1);
 		Player *p2 = new GamePlayer(g2,p2Level, 0);
 		p1->setNextBlock();
@@ -404,7 +403,7 @@ int main(int argc, const char* argv[]){
 				std::cin >> s;
 				int numTimes = getNumTimes(s);
 				s = matchCommand(s, commands);
-				executeCommand(s,activePlayer, p1, p2, commands, highScore, numTimes);
+				executeCommand(s,activePlayer, p1, p2, commands, highScore, sequencefile1, sequencefile2, numTimes);
 				if(p1->getScore() > highScore || p2->getScore() > highScore) highScore = std::max(p1->getScore(), p2->getScore());
 				printPlayers(activePlayer,p1,p2,highScore);
 			} catch(std::exception){

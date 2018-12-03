@@ -194,31 +194,15 @@ void GamePlayer::levelUp(int times){
   }
 }
 
-void GamePlayer::levelDown(int times){
+void GamePlayer::levelDown(int times, std::string scriptfile1, std::string scriptfile2){
   for(int i = times; i > 0; i--){
     int levelNum = level->getLevel();
     if(levelNum != 0){
       delete level;
       switch(levelNum){
         case 1:
-          //If different sequencefile is defined and player 1
-          #ifdef scriptfile1
-          if(playerId == 1) level = new Level0(STRINGIZE_VALUE_OF(scriptfile1));
-          heavyLevel = false;
-          break;
-          #endif
-          //Otherwise just use sequence1.txt
-          if(playerId == 1) level = new Level0("sequence1.txt");
-           heavyLevel = false;
-
-          //If different sequencefile is defined and player 2
-          #ifdef scriptfile2
-          if(playerId == 0) level = new Level0(STRINGIZE_VALUE_OF(scriptfile2));
-          heavyLevel = false;
-          break;
-          #endif
-          //Otherwise just use sequence2.txt
-          if(playerId == 0) level = new Level0("sequence2.txt");
+          if(playerId == 1) level = new Level0(scriptfile1);
+          else level = new Level0(scriptfile2);
           heavyLevel = false;
           break;
         case 2:

@@ -102,8 +102,8 @@ void HeavyDecorator::levelUp(int times) {
     return player->levelUp(times);
 }
 
-void HeavyDecorator::levelDown(int times) {
-    return player->levelDown(times);
+void HeavyDecorator::levelDown(int times, std::string scriptfile1, std::string scriptfile2) {
+    return player->levelDown(times, scriptfile1,scriptfile2);
 }
 
 void HeavyDecorator::noRandom(std::string sequencefile) {

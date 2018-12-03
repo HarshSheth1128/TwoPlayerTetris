@@ -35,7 +35,7 @@ class GamePlayer: public Player{
     bool moveDown(int times) override;
     void rotate(std::string direction, int times) override;
     void levelUp(int times) override;
-    void levelDown(int times) override;
+    void levelDown(int times, std::string scriptfile1, std::string scriptfile2) override;
     int drop() override;
     void noRandom(std::string sequencefile) override;
     void random() override;

@@ -41,7 +41,7 @@ class Player{
     virtual bool moveDown(int times) = 0;
     virtual void rotate(std::string direction, int times) = 0;
     virtual void levelUp(int times) = 0;
-    virtual void levelDown(int times) = 0;
+    virtual void levelDown(int times, std::string scriptfile1, std::string scriptfile2) = 0;
     virtual int drop() = 0;
     virtual void noRandom(std::string sequencefile) = 0;
     virtual void random() = 0;

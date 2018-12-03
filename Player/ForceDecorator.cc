@@ -93,8 +93,8 @@ void ForceDecorator::levelUp(int times) {
     player->levelUp(times);
 }
 
-void ForceDecorator::levelDown(int times) {
-    player->levelDown(times);
+void ForceDecorator::levelDown(int times, std::string scriptfile1, std::string scriptfile2) {
+    player->levelDown(times,scriptfile1,scriptfile2);
 }
 
 void ForceDecorator::noRandom(std::string sequencefile) {

@@ -94,8 +94,8 @@ void BlindDecorator::levelUp(int times) {
     return player->levelUp(times);
 }
 
-void BlindDecorator::levelDown(int times) {
-    return player->levelDown(times);
+void BlindDecorator::levelDown(int times, std::string scriptfile1, std::string scriptfile2) {
+    return player->levelDown(times,scriptfile1,scriptfile2);
 }
 
 void BlindDecorator::noRandom(std::string sequencefile) {

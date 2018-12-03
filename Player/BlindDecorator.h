@@ -30,7 +30,7 @@ class BlindDecorator: public EffectsDecorator{
     int drop() override;
     char getNextBlockChar() override;
     void levelUp(int times) override;
-    void levelDown(int times) override;
+    void levelDown(int times, std::string scriptfile1, std::string scriptfile2) override;
     void noRandom(std::string sequencefile) override;
     void random() override;
     void replaceBlock(char c) override;
