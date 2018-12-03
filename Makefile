@@ -41,7 +41,7 @@ Player.o: Player/Player.cc Player/Player.h
 	g++ -g -std=c++14 -c Player/Player.cc
 
 gamePlayer.o: Player/gamePlayer.cc Player/gamePlayer.h
-	g++ -g -std=c++14 -c Player/gamePlayer.cc
+	g++ -g ${MAINFLAGS} -std=c++14 -c Player/gamePlayer.cc
 
 Level.o: Level/Level.cc Level/Level.h
 	g++ -g -std=c++14 -c Level/Level.cc
