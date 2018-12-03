@@ -108,6 +108,10 @@ void GamePlayer::setNextBlock() {
   nextBlock = getNextBlock();
 }
 
+void GamePlayer::setPlayerOneActive () {
+  playerOnePlaying = true;
+}
+
 void GamePlayer::moveLeft(int times) {
   for(int i = times; i > 0; i--){
     currBlock->moveLeft();

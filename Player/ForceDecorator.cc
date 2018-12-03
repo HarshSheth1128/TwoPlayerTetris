@@ -59,6 +59,10 @@ void ForceDecorator::setNextBlock(){
     player->setNextBlock();
 }
 
+void ForceDecorator::setPlayerOneActive(){
+    player->setPlayerOneActive();
+}
+
 void ForceDecorator::moveLeft(int times){
     player->moveLeft(times);
 }

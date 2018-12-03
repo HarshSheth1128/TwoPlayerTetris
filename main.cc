@@ -397,6 +397,7 @@ int main(){
 				break;
 			}
 		}
+		p1->setPlayerOneActive();
 		delete p1;
 		delete p2;
 		delete g1;
