@@ -169,7 +169,7 @@ void printPlayers(Player* activePlayer, Player *p1, Player *p2, int highScore){
     std::cout << "Command: " << std::endl;
 }
 
-Level* getLevel(int playerId){
+Level* getLevel(int playerId, Grid *g){
     #if startlevel == 0
     if(playerId == 1){
         #ifdef scriptfile1
@@ -183,13 +183,13 @@ Level* getLevel(int playerId){
         return new Level0("sequence2.txt");
     }
     #elif startlevel == 1 
-    return new Level1;
+    return new Level1();
     #elif startlevel == 2 
-    return new Level2;
+    return new Level2();
     #elif startlevel == 3 
-    return new Level3;
+    return new Level3();
     #elif startlevel == 4 
-    return new Level4;
+    return new Level4(g);
     #endif
 }
 
@@ -229,6 +229,7 @@ int getNumTimes(std::string &s){
             return numTimes;
         }
     }
+	return numTimes;
 }
 
 //Takes a vector of commands and finds the matching command
@@ -355,8 +356,8 @@ int main(){
 		std::vector<std::string> commands = initVector();
 		Grid *g1 = new Grid();
 		Grid *g2 = new Grid();
-		Level *p1Level = getLevel(1);
-		Level *p2Level = getLevel(0);
+		Level *p1Level = getLevel(1,g1);
+		Level *p2Level = getLevel(0,g2);
 		Player *p1 = new GamePlayer(g1,p1Level, 1);
 		Player *p2 = new GamePlayer(g2,p2Level, 0);
 		p1->setNextBlock();
