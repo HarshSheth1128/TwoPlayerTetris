@@ -15,6 +15,10 @@
 #include "../Level/Level4.h"
 #include <sstream>
 #include <string>
+#include <iterator>
+
+#define STRINGIZE(x) #x
+#define STRINGIZE_VALUE_OF(x) STRINGIZE(x)
 
 
 //GamePlayer::GamePlayer(xWindow &w){}
@@ -24,8 +28,8 @@ GamePlayer::GamePlayer(Grid* grid, Level *level, bool id):Player(grid, level, id
 //GamePlayer::GamePlayer(Grid* grid, Level *level, bool id):grid{grid}, level{level}, playerId{id}{}
 
 GamePlayer::~GamePlayer(){
-  delete grid;
-  delete level;
+  //delete grid;
+  //delete level;
   delete currBlock;
 }
 
@@ -155,7 +159,7 @@ void GamePlayer::levelDown(int times){
         case 1:
           //If differennt sequencefile is defined and player 1
           #ifdef scriptfile1
-          if(playerId == 1) level = new Level0("scriptfile1");
+          if(playerId == 1) level = new Level0(STRINGIZE_VALUE_OF(scriptfile1));
           break;
           #endif
           //Otherwise just use sequence1.txt
@@ -163,7 +167,7 @@ void GamePlayer::levelDown(int times){
 
           //If different sequencefile is defined and player 2
           #ifdef scriptfile2
-          if(playerId == 0) level = new Level0("scriptfile2");
+          if(playerId == 0) level = new Level0(STRINGIZE_VALUE_OF(scriptfile2));
           break;
           #endif
           //Otherwise just use sequence2.txt
@@ -241,13 +245,16 @@ void GamePlayer::shiftCellsDown(int rowCleared){
   
 }
 
-//If the block is empty (i.e has no cells) delete it
 void GamePlayer::removeEmptyBlocks(){
-  for(int i = 0; i < blocksOnBoard.size(); i++){
-    if(blocksOnBoard.at(i)->numCells() == 0){
-      blocksOnBoard.erase(blocksOnBoard.begin() + i);
-      score += (blocksOnBoard.at(i)->getGeneratedLevel() + 1) * (blocksOnBoard.at(i)->getGeneratedLevel() + 1);
-      i--;
+  //Iterate through the blocks and delete the ones thats have no cells
+  for(auto it = blocksOnBoard.begin(); it != blocksOnBoard.end();){
+    if((*it)->numCells() == 0){
+      score += ((*it)->getGeneratedLevel() + 1) * ((*it)->getGeneratedLevel() + 1);
+      delete *it;  
+      it = blocksOnBoard.erase(it);
+    }
+    else {
+      ++it;
     }
   }
 }

@@ -27,6 +27,9 @@
 #include <stdlib.h>
 #include <fstream>
 
+#define STRINGIZE(x) #x
+#define STRINGIZE_VALUE_OF(x) STRINGIZE(x)
+
 void printPlayerBlocks(Player* p1, Player* p2){
 	char p1NextBlock = p1->getNextBlockChar();
 	char p2NextBlock = p2->getNextBlockChar();
@@ -171,12 +174,12 @@ Level* getLevel(int playerId){
     #if startlevel == 0
     if(playerId == 1){
         #ifdef scriptfile1
-        return new Level0("scriptfile1");
+        return new Level0(STRINGIZE_VALUE_OF(scriptfile1));
         #endif
         return new Level0("sequence1.txt");
     } else {
         #ifdef scriptfile2
-        return new Level0("scriptfile2");
+        return new Level0(STRINGIZE_VALUE_OF(scriptfile2));
         #endif
         return new Level0("sequence2.txt");
     }
@@ -300,7 +303,9 @@ void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &
         std::string sequencefile;
         std::cin >> sequencefile;
         activePlayer->noRandom(sequencefile);
-    } else if (s == "sequence"){
+    } else if (s == "random"){
+		activePlayer->random();
+	} else if (s == "sequence"){
         std::string sequencefile;
         std::cin >> sequencefile;
 		std::ifstream inputFile{sequencefile};
@@ -324,7 +329,7 @@ void executeCommand(std::string s, Player* &activePlayer, Player* &p1, Player* &
 int main(){    
     //Initialize Game
 	int highScore = 0;
-	while(true){
+	while(!(std::cin.eof() || std::cin.fail())){
 		std::vector<std::string> commands = initVector();
 		Grid *g1 = new Grid();
 		Grid *g2 = new Grid();
@@ -340,21 +345,30 @@ int main(){
 
 		//GAME LOOP
 		printPlayers(activePlayer,p1,p2,highScore);
-		while(!std::cin.fail()){
+		while(!(std::cin.eof() || std::cin.fail())){
 			try{
 				std::string s;
 				std::cin >> s;
 				int numTimes = getNumTimes(s);
 				s = matchCommand(s, commands);
 				executeCommand(s,activePlayer, p1, p2, commands, highScore, numTimes);
-				if(p1->getScore() > highScore || p2->getScore() > highScore) highScore += std::max(p1->getScore(), p2->getScore());
+				if(p1->getScore() > highScore || p2->getScore() > highScore) highScore = std::max(p1->getScore(), p2->getScore());
 				printPlayers(activePlayer,p1,p2,highScore);
 			} catch(std::exception){
 				std::cout << "Game Over!" << std::endl;
-				if(activePlayer->getPlayerId() == 0){
+				if(activePlayer->getPlayerId() == 1){
 					std::cout << "Player 2 WINS!" << std::endl;
 				} else {
 					std::cout << "Player 1 WINS!" << std::endl;
+				}
+				std::cout << "RETURN to continue, EXIT to quit" << std::endl;
+				std::cout << "> ";
+				std::string s;
+				std::cin>>s; 
+				if(s == "RETURN"){
+					break;
+				} else if (s == "EXIT"){
+					exit(0);
 				}
 				break;
 			} catch (std::string) {
@@ -363,6 +377,10 @@ int main(){
 		}
 		delete p1;
 		delete p2;
+		delete g1;
+		delete g2;
+		delete p1Level;
+		delete p2Level;
 	}
 }
 
