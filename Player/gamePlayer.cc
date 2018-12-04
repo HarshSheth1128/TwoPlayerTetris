@@ -17,10 +17,6 @@
 #include <string>
 #include <iterator>
 
-
-
-
-
 //GamePlayer::GamePlayer(xWindow &w){}
 GamePlayer::GamePlayer(Grid* grid, Level *level, bool id):Player(grid, level, id){
   if ((level->getLevel() == 3) or (level->getLevel() == 4)){
@@ -109,6 +105,10 @@ void GamePlayer::getBlock(char blockChar){
 void GamePlayer::setNextBlock() {
   getBlock(nextBlock);
   nextBlock = getNextBlock();
+}
+
+void GamePlayer::setPlayerOneActive () {
+  playerOnePlaying = true;
 }
 
 void GamePlayer::moveLeft(int times) {

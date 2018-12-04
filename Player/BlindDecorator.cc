@@ -66,6 +66,10 @@ void BlindDecorator::setNextBlock(){
     player->setNextBlock();
 }
 
+void BlindDecorator::setPlayerOneActive(){
+    player->setPlayerOneActive();
+}
+
 void BlindDecorator::moveLeft(int times){
     player->moveLeft(times);
 }
